@@ -17,8 +17,11 @@ This project is configured as a mono repo, but configuration should be kept spec
 
 ### Tools
 
+- [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite)
+- [vite](https://vitejs.dev/guide/)
 - Linting tools:
-  - []
+  - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+  - [typescript-eslint](https://typescript-eslint.io/linting/configs/)
   - [eslint-plugin-jsdoc](https://www.npmjs.com/package/eslint-plugin-jsdoc)
   - [Prettier - Integrating with Linters](https://prettier.io/docs/en/integrating-with-linters.html)
   - [ESLint flat configuration](https://eslint.org/blog/2022/08/new-config-system-part-2/)
