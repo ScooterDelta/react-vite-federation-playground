@@ -32,3 +32,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 
 - Scaffolding applications was done with `Vite`
   - `npm create vite@latest @react-playground/<app> -- --template react-ts`
+- Getting Started:
+  - `npm install` in root
+  - `npm run build --workspaces` (Runs in all workspaces)
+    - `npm run build -w clients/mfe-one`
