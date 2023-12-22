@@ -1,0 +1,29 @@
+{
+  "name": "react-vite-federation-playground",
+  "version": "1.0.0",
+  "description": "A playground for experiments with React 18+ Native Federation using Vite.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScooterDelta/react-vite-federation-playground.git"
+  },
+  "keywords": [
+    "React",
+    "Vite",
+    "Microfrontends",
+    "Federation"
+  ],
+  "author": "Anthony Farquharson <anthony.farquharson@entelect.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ScooterDelta/react-vite-federation-playground/issues"
+  },
+  "homepage": "https://github.com/ScooterDelta/react-vite-federation-playground#readme",
+  "devDependencies": {
+    "markdownlint": "^0.32.1",
+    "markdownlint-cli": "^0.38.0"
+  }
+}
