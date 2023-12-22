@@ -18,6 +18,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 ### Tools
 
 - [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite)
+  - Alternative lib: [originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
 - [vite](https://vitejs.dev/guide/)
 - Linting tools:
   - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
