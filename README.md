@@ -25,3 +25,10 @@ This project is configured as a mono repo, but configuration should be kept spec
   - [eslint-plugin-jsdoc](https://www.npmjs.com/package/eslint-plugin-jsdoc)
   - [Prettier - Integrating with Linters](https://prettier.io/docs/en/integrating-with-linters.html)
   - [ESLint flat configuration](https://eslint.org/blog/2022/08/new-config-system-part-2/)
+- [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)
+  - This is used to accelerate the POC process, so independent dependencies are easier to manage.
+
+## Rough Notes
+
+- Scaffolding applications was done with `Vite`
+  - `npm create vite@latest @react-playground/<app> -- --template react-ts`
