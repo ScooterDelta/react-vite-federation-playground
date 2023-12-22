@@ -27,6 +27,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - [ESLint flat configuration](https://eslint.org/blog/2022/08/new-config-system-part-2/)
 - [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)
   - This is used to accelerate the POC process, so independent dependencies are easier to manage.
+- [React Query](https://tanstack.com/query/latest)
+  - [React Query with GraphQL](https://tanstack.com/query/latest/docs/react/graphql) - use an open GraphQL API to test.
 
 ## Rough Notes
 
