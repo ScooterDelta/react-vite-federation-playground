@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "host"
+    },
+    {
+      "path": "clients/mfe-one",
+      "name": "clients/mfe-one"
+    },
+    {
+      "path": "clients/mfe-two",
+      "name": "clients/mfe-two"
+    }
+  ],
+  "settings": {}
+}
