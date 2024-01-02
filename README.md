@@ -45,6 +45,7 @@ This project is configured as a mono repo, but configuration should be kept spec
     - `npm run build -w clients/mfe-one`
 - **NOTE**: Had to update the build target for vite to `esnext`
   - This may cause browser incompatability - check min browser requirements with Matt.
+  - Can be limited through the [vite module federation plugin configuration](https://github.com/originjs/vite-plugin-federation#error-top-level-await-is-not-available-in-the-configured-target-environment) for top level await.
 - **NOTE**: The vite server does not serve assets while running in `dev` mode, therefore client apps need to be run with `preview`
   - This is on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#testing-in-dev-mode) docs under "Testing in Dev"
 - Adding new applications
