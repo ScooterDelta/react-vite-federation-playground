@@ -2,14 +2,14 @@
 
 A playground for experiments with React 18+ Native Federation using Vite.
 
-This project is configured as a mono repo, but configuration should be kept specific to different modules - this 
+This project is configured as a mono repo, but configuration should be kept specific to different modules.
 
 ## Goals
 
 - Set up a micro frontend host supporting React with Vite
   - The host should supply a rendered header menu
   - The host should provide top level routing
-- Set up two micro frontend clients supoprting React with Vite
+- Set up two micro frontend clients supporting React with Vite
 - Set up best practices for general purpose tools
   - ESLint, Vite, React Router, React Query, Prettier, Editor Config
 - Set up a Docker Container for the root application than can be easily "run" by the clients for debugging.
@@ -42,7 +42,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 - **NOTE**: Had to update the build target for vite to `esnext`
   - This may cause browser incompatability - check min browser requirements with Matt.
 - **NOTE**: The vite server does not serve assets while running in `dev` mode, therefore client apps need to be run with `preview`
-  - This is on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#testing-in-dev-mode) docs under "Testing in Dev Mode".
+  - This is on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#testing-in-dev-mode) docs under "Testing in Dev
 
 ### First Time Setup
 
