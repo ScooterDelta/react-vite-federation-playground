@@ -39,6 +39,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - `npm install` in root
   - `npm run build --workspaces` (Runs in all workspaces)
     - `npm run build -w clients/mfe-one`
+- **NOTE**: Had to update the build target for vite to `esnext`
+  - This may cause browser incompatability - check min browser requirements with Matt.
 
 ### First Time Setup
 
