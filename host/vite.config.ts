@@ -26,8 +26,8 @@ export default ({ mode }) => {
       federation({
         name: 'host-app',
         remotes: {
-          mfe_one: MFE_ONE_URL,
-          mfe_two: MFE_TWO_URL,
+          'mfe-one': MFE_ONE_URL,
+          'mfe-two': MFE_TWO_URL,
         },
         shared: ['react', 'react-dom'],
       }),

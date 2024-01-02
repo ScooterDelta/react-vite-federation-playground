@@ -23,8 +23,8 @@ export default ({ mode }) => {
         name: 'mfe-two',
         filename: 'remoteEntry.js',
         exposes: {
-          './App': './src/App',
-          './Button': './src/button/Button',
+          './app': './src/App',
+          './button': './src/button/Button',
         },
         shared: ['react', 'react-dom'],
       }),
