@@ -27,10 +27,10 @@ export default ({ mode }) => {
         name: 'mfe-two',
         filename: 'remoteEntry.js',
         exposes: {
-          './app': './src/App',
-          './button': './src/button/Button',
+          './routes': './src/routes',
+          './App': './src/App',
         },
-        shared: ['react', 'react-dom'],
+        shared: ['react', 'react-dom', 'react-router-dom'],
       }),
     ],
     build: {

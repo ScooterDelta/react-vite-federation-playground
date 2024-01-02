@@ -1,19 +1,15 @@
-import MfeOneApp from 'mfe-one/app';
-import MfeTwoApp from 'mfe-two/app';
-import { createBrowserRouter } from 'react-router-dom';
+import MfeOneRoutes from 'mfe-one/routes';
+import MfeTwoRoutes from 'mfe-two/routes';
+import { RouteObject } from 'react-router-dom';
 import { Root } from './routes/root';
 
-export const routes = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <Root />,
   },
-  {
-    path: '/mfe-one',
-    element: <MfeOneApp />,
-  },
-  {
-    path: '/mfe-two',
-    element: <MfeTwoApp />,
-  },
-]);
+  ...MfeOneRoutes,
+  ...MfeTwoRoutes,
+];
+
+export default routes;

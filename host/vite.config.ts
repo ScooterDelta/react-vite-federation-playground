@@ -33,7 +33,7 @@ export default ({ mode }) => {
           'mfe-one': MFE_ONE_URL,
           'mfe-two': MFE_TWO_URL,
         },
-        shared: ['react', 'react-dom'],
+        shared: ['react', 'react-dom', 'react-router-dom'],
       }),
     ],
     build: {
