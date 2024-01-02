@@ -7,7 +7,10 @@ export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 
   const SERVER_HOST = process.env.SERVER_HOST ?? '0.0.0.0';
-  const SERVER_PORT = parseInt(process.env.SERVER_PORT) ?? 5400;
+  const SERVER_PORT =
+    process.env.SERVER_PORT != undefined
+      ? parseInt(process.env.SERVER_PORT)
+      : 5400;
   const MFE_ONE_URL =
     process.env.MFE_ONE_URL ?? 'http://localhost:5401/assets/remoteEntry.js';
   const MFE_TWO_URL =
