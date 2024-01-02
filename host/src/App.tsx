@@ -1,3 +1,5 @@
+import MfeOneApp from 'mfe-one/app';
+import MfeTwoApp from 'mfe-two/app';
 import './App.css';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -14,9 +16,10 @@ function App() {
         </a>
       </div>
       <h1>Host</h1>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <div className="card">
+        <MfeOneApp />
+        <MfeTwoApp />
+      </div>
     </>
   );
 }

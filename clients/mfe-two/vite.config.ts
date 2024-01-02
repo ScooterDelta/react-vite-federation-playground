@@ -17,6 +17,10 @@ export default ({ mode }) => {
       host: SERVER_HOST,
       port: SERVER_PORT,
     },
+    preview: {
+      host: SERVER_HOST,
+      port: SERVER_PORT,
+    },
     plugins: [
       react(),
       federation({
