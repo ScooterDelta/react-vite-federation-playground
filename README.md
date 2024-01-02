@@ -32,6 +32,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - This is used to accelerate the POC process, so independent dependencies are easier to manage.
 - [React Query](https://tanstack.com/query/latest)
   - [React Query with GraphQL](https://tanstack.com/query/latest/docs/react/graphql) - use an open GraphQL API to test.
+- [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/)
+  - Useful blog post around how someone setup module federated react router
 
 ## Rough Notes
 
