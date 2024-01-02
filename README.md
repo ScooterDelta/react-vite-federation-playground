@@ -44,7 +44,12 @@ This project is configured as a mono repo, but configuration should be kept spec
 - **NOTE**: Had to update the build target for vite to `esnext`
   - This may cause browser incompatability - check min browser requirements with Matt.
 - **NOTE**: The vite server does not serve assets while running in `dev` mode, therefore client apps need to be run with `preview`
-  - This is on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#testing-in-dev-mode) docs under "Testing in Dev
+  - This is on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#testing-in-dev-mode) docs under "Testing in Dev"
+- Adding new applications
+  - Generate new application using Vite template
+  - Configure `vite.config.ts` to set up module federation
+  - Create `routes.tsx` which exports a list of `RouteObject`
+  - Add the new microfrontend to the host `routes.tsx` and create a `<mfe-name>/routes` module declaration in `@types`
 
 ### First Time Setup
 
