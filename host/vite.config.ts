@@ -32,5 +32,8 @@ export default ({ mode }) => {
         shared: ['react', 'react-dom'],
       }),
     ],
+    build: {
+      target: 'esnext',
+    },
   });
 };
