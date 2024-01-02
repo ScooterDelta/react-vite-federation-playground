@@ -25,7 +25,6 @@ export default ({ mode }) => {
         exposes: {
           './App': './src/App',
           './Button': './src/button/Button',
-          './Remote': './src/Remote',
         },
         shared: ['react', 'react-dom'],
       }),
