@@ -39,3 +39,12 @@ This project is configured as a mono repo, but configuration should be kept spec
   - `npm install` in root
   - `npm run build --workspaces` (Runs in all workspaces)
     - `npm run build -w clients/mfe-one`
+
+### First Time Setup
+
+- By default services will run on `localhost`, with the following ports
+  - Host -> `http://localhost:5400`
+  - MFE One -> `http://localhost:5401`
+  - MFE Two -> `http://localhost:5402`
+- Ports can be customized by setting the `SERVER_HOST` and `SERVER_PORT` variables
+  - These can be easily adjusted by creating a `.env` file from the `.env.example` in each module.
