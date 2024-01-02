@@ -28,7 +28,6 @@ export default ({ mode }) => {
         filename: 'remoteEntry.js',
         exposes: {
           './routes': './src/routes',
-          './App': './src/App',
         },
         shared: ['react', 'react-dom', 'react-router-dom'],
       }),

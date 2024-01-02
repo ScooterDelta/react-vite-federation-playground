@@ -54,3 +54,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - MFE Two -> `http://localhost:5402`
 - Ports can be customized by setting the `SERVER_HOST` and `SERVER_PORT` variables
   - These can be easily adjusted by creating a `.env` file from the `.env.example` in each module.
+
+### Routing
+
+- Routing is defined by submodules / MFE Applications, and is loaded via the `routes` file.
+  - **NOTE** Conflicting routes will not be loaded, only the first will be loaded (if an MFE is misconfigured, it will not load).
