@@ -24,7 +24,7 @@ export default ({ mode }) => {
           './Button': './src/button/Button',
           './Remote': './src/Remote',
         },
-        shared: ['react', 'react-dom', 'react-router', 'react-router-dom'],
+        shared: ['react', 'react-dom'],
       }),
     ],
   });

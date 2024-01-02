@@ -26,7 +26,7 @@ export default ({ mode }) => {
           mfe_one: MFE_ONE_URL,
           mfe_two: MFE_TWO_URL,
         },
-        shared: ['react', 'react-dom', 'react-router', 'react-router-dom'],
+        shared: ['react', 'react-dom'],
       }),
     ],
   });
