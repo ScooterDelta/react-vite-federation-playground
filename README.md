@@ -50,6 +50,7 @@ This project is configured as a mono repo, but configuration should be kept spec
   - Configure `vite.config.ts` to set up module federation
   - Create `routes.tsx` which exports a list of `RouteObject`
   - Add the new microfrontend to the host `routes.tsx` and create a `<mfe-name>/routes` module declaration in `@types`
+  - Add the new microfrontend to the host `vite.config.ts` and add configuration for environment variable
 
 ### First Time Setup
 
