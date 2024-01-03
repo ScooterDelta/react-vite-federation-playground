@@ -48,6 +48,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 
 - [daisy UI](https://daisyui.com) is a simple Tailwind framework
   - Using instead of material tailwind due to bug [material-tailwind/issues/299](https://github.com/creativetimofficial/material-tailwind/issues/299)
+  - Adds [heroicons](https://heroicons.com/) for style points
 - [material-tailwind](https://www.material-tailwind.com) and [github/material-tailwind](https://github.com/creativetimofficial/material-tailwind?ref=material-tailwind)
   - Using this as an experiment to avoid using Material UI and test out Tailwind.
   - Can set up the prettier plugin [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
