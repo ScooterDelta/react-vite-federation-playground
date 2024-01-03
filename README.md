@@ -87,6 +87,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - Create `routes.tsx` which exports a list of `RouteObject`
   - Add the new microfrontend to the host `routes.tsx` and create a `<mfe-name>/routes` module declaration in `@types`
   - Add the new microfrontend to the host `vite.config.ts` and add configuration for environment variable
+- Each app implements its own `<div className="container mx-auto">` in their relative context roots
+  - This is to avoid injecting unnecessary padding from the parent application, so if apps want their own sidenav / topnav they can.
 
 ### First Time Setup
 

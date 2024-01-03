@@ -46,10 +46,7 @@ export const AppBar = () => {
           </ul>
         </div>
       </div>
-      <br />
-      <div className="container mx-auto">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 };

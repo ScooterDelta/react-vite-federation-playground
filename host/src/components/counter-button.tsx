@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export type ButtonProps = {
-  accent?: 'primary' | 'neutral' | 'secondary' | 'accent' | 'ghost' | 'link';
+export type CounterButtonProps = {
+  accent?: 'primary' | 'secondary';
 };
 
-export const Button = ({ accent = 'primary' }: ButtonProps) => {
+export const CounterButton = ({ accent = 'primary' }: CounterButtonProps) => {
   const [state, setState] = useState(0);
   return (
     <div>
@@ -12,10 +12,10 @@ export const Button = ({ accent = 'primary' }: ButtonProps) => {
         id="click-btn"
         className={`btn btn-${accent}`}
         onClick={() => setState(s => s + 1)}>
-        Click me: {state}
+        Click me ({accent}): {state}
       </button>
     </div>
   );
 };
 
-export default Button;
+export default CounterButton;
