@@ -1,10 +1,10 @@
-import Button from './button/Button';
+import Button from './components/Button';
 
 function App() {
   return (
     <>
       <h2>This is the MFE One Button</h2>
-      <Button></Button>
+      <Button accent="primary"></Button>
     </>
   );
 }

@@ -19,12 +19,12 @@ export const AppBar = () => {
           <ul className="menu menu-md menu-horizontal p-1">
             <li className="py-1">
               <Link to="/mfe-one">
-                <ServerIcon className="h-6 w-6 text-blue-500" /> MFE One
+                <ServerIcon className="h-6 w-6 text-primary" /> MFE One
               </Link>
             </li>
             <li className="py-1">
               <Link to="/mfe-two">
-                <ServerStackIcon className="h-6 w-6 text-blue-500" />
+                <ServerStackIcon className="h-6 w-6 text-primary" />
                 MFE Two
               </Link>
             </li>
