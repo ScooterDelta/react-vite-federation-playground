@@ -32,6 +32,9 @@
     },
     "editor.quickSuggestions": {
       "strings": "on"
-    }
+    },
+    "cSpell.words": [
+      "daisyui"
+    ]
   }
 }
