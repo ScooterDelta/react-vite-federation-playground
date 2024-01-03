@@ -9,7 +9,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [ ] Set up a micro frontend host supporting React with Vite
   - [ ] The host should supply a rendered header menu
   - [ ] The host should provide top level routing
-  - [ ] Set up collapsible sidebar nav for Nested Route Applications
+  - [ ] Set up collapsible sidebar nav for Nested Route Applications (see [drawer.css](https://github.com/saadeghi/daisyui/blob/master/src/components/styled/drawer.css))
 - [x] Set up two micro frontend clients supporting React with Vite
 - [ ] Set up best practices for general purpose tools
   - [ ] ESLint, Vite, React Router, React Query, Prettier, Editor Config
