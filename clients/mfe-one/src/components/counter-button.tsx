@@ -1,18 +1,22 @@
 import { useState } from 'react';
 
 export type CounterButtonProps = {
-  accent?: 'primary' | 'secondary';
+  title: string;
+  className?: string | undefined;
 };
 
-export const CounterButton = ({ accent = 'primary' }: CounterButtonProps) => {
+export const CounterButton = ({
+  title,
+  className = 'btn btn-primary',
+}: CounterButtonProps) => {
   const [state, setState] = useState(0);
   return (
     <div>
       <button
         id="click-btn"
-        className={`btn btn-${accent}`}
+        className={className}
         onClick={() => setState(s => s + 1)}>
-        Click me ({accent}): {state}
+        {title}: {state}
       </button>
     </div>
   );

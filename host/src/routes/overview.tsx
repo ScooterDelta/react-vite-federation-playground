@@ -11,8 +11,15 @@ export const Overview = () => {
           visible on the MFE Client Applications unless loaded by the host
         </p>
         <h2>Some Styled Buttons!</h2>
-        <CounterButton accent="primary"></CounterButton>
-        <CounterButton accent="secondary"></CounterButton>
+        <CounterButton
+          title="Click Me (Primary)"
+          className="btn btn-primary"></CounterButton>
+        <CounterButton
+          title="Click Me (Secondary)"
+          className="btn btn-secondary"></CounterButton>
+        <CounterButton
+          title="Click Me (Ghost)"
+          className="btn btn-ghost"></CounterButton>
         <h2>
           Playing around with code snippets, for example adding a new Microapp:
         </h2>
