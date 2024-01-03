@@ -35,6 +35,11 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/)
   - Useful blog post around how someone setup module federated react router
 
+#### More Investigation Required
+
+- [Vitedge](https://vitedge.js.org/)
+  - A Vite ESR Framework - handles SSR for first load ONLY (might help with router initialization)
+
 ## Rough Notes
 
 - Scaffolding applications was done with `Vite`
