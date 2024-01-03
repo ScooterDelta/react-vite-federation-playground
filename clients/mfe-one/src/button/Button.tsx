@@ -1,5 +1,3 @@
-import './Button.css';
-
 import { useState } from 'react';
 
 export const Button = () => {
@@ -8,7 +6,7 @@ export const Button = () => {
     <div>
       <button
         id="click-btn"
-        className="shared-btn"
+        className="btn btn-primary"
         onClick={() => setState(s => s + 1)}>
         Click me: {state}
       </button>
