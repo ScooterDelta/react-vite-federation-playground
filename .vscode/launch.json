@@ -3,7 +3,20 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [],
+  "configurations": [
+    {
+      "name": "Debug Host Application",
+      "request": "launch",
+      "type": "msedge",
+      "url": "http://localhost:5400",
+      "webRoot": "${workspaceFolder:host}",
+      "pathMapping": {
+        "localhost:5400": "${workspaceFolder:host}",
+        "localhost:5401": "${workspaceFolder:clients/mfe-one}",
+        "localhost:5402": "${workspaceFolder:clients/mfe-two}",
+      }
+    }
+  ],
   "compounds": [
     {
       "name": "Watch All MFE Applications",
