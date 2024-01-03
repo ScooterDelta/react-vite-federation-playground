@@ -6,14 +6,20 @@ This project is configured as a mono repo, but configuration should be kept spec
 
 ## Goals
 
-- Set up a micro frontend host supporting React with Vite
-  - The host should supply a rendered header menu
-  - The host should provide top level routing
-- Set up two micro frontend clients supporting React with Vite
-- Set up best practices for general purpose tools
-  - ESLint, Vite, React Router, React Query, Prettier, Editor Config
-- Set up a Docker Container for the root application than can be easily "run" by the clients for debugging.
-  - Focus on a clean developer experience for independent UI apps outside of the container.
+- [ ] Set up a micro frontend host supporting React with Vite
+  - [ ] The host should supply a rendered header menu
+  - [ ] The host should provide top level routing
+- [x] Set up two micro frontend clients supporting React with Vite
+- [ ] Set up best practices for general purpose tools
+  - [ ] ESLint, Vite, React Router, React Query, Prettier, Editor Config
+- [ ] Set up a Docker Container for the root application than can be easily "run" by the clients for debugging.
+  - [ ] Focus on a clean developer experience for independent UI apps outside of the container.
+
+### Stretch Goals
+
+- [ ] Set up SSR or Edge SSR for initial page load and router initialization support
+- [ ] Set up MonoRepo supporting / restrictive tools (e.g. `eslint-plugin-import` and `eslint-plugin-boundaries`)
+- [ ] Set up dynamic routing support - loading Micro Applications from API Endpoint registry.
 
 ### Tools
 
@@ -39,6 +45,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 
 - [Vitedge](https://vitedge.js.org/)
   - A Vite ESR Framework - handles SSR for first load ONLY (might help with router initialization)
+  - Alternatively, [Vite SSR](https://github.com/frandiox/vite-ssr) can be used to achieve similar (used by `Vitedge`)
 
 ## Rough Notes
 
