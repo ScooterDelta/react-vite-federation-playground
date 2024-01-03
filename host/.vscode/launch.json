@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "MFE-One Watch & Preview Application",
+      "name": "Host Watch & Preview Application",
       "request": "launch",
       "runtimeArgs": [
         "run-script",
@@ -17,6 +17,19 @@
       ],
       "type": "node",
       "preLaunchTask": "npm: build:watch"
+    },
+    {
+      "name": "Host Dev Application",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "dev"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node",
     }
   ]
 }

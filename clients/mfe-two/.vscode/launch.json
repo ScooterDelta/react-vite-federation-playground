@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "MFE-One Watch & Preview Application",
+      "name": "MFE-Two Watch & Preview Application",
       "request": "launch",
       "runtimeArgs": [
         "run-script",

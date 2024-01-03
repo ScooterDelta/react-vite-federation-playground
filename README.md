@@ -14,6 +14,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - [ ] ESLint, Vite, React Router, React Query, Prettier, Editor Config
 - [ ] Set up a Docker Container for the root application than can be easily "run" by the clients for debugging.
   - [ ] Focus on a clean developer experience for independent UI apps outside of the container.
+- [ ] Set up Source Maps for working (and debugging) locally
+  - [ ] Disable in higher environments / production builds (opt-in locally).
 
 ### Stretch Goals
 

@@ -39,6 +39,7 @@ export default ({ mode }) => {
     build: {
       target: 'esnext',
       cssCodeSplit: false,
+      sourcemap: true,
     },
   });
 };
