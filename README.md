@@ -43,6 +43,16 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/)
   - Useful blog post around how someone setup module federated react router
 
+#### CSS Frameworks
+
+- [daisy UI](https://daisyui.com) is a simple Tailwind framework
+  - Using instead of material tailwind due to bug [material-tailwind/issues/299](https://github.com/creativetimofficial/material-tailwind/issues/299)
+- [material-tailwind](https://www.material-tailwind.com) and [github/material-tailwind](https://github.com/creativetimofficial/material-tailwind?ref=material-tailwind)
+  - Using this as an experiment to avoid using Material UI and test out Tailwind.
+  - Can set up the prettier plugin [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
+  - [material-tailwind/issues/528](https://github.com/creativetimofficial/material-tailwind/issues/528) causes `placeholder` to be required on all types, can be fixed by downgrading `@types/react` to `18.2.42`
+    - Currently fixing by providing `placeholder={undefined}` on components requiring it - remove this when possible.
+
 #### More Investigation Required
 
 - [Vitedge](https://vitedge.js.org/)
@@ -83,4 +93,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 ### Routing
 
 - Routing is defined by submodules / MFE Applications, and is loaded via the `routes` file.
-  - **NOTE** Conflicting routes will not be loaded, only the first will be loaded (if an MFE is misconfigured, it will not load).
+  - **NOTE** Conflicting routes will not be loaded, only the first will be loaded (if an MFE is misconfigured, it will not load)
+- Lazy Evaluation of sub-routes within applications is currently unsupported
+  - Since the application routes need to be loaded when `remoteEntry.js` is initialized
+  - This can be mitigated by lazy-loading the micro app sub routes only when that application is loaded (otherwise keep as is)
