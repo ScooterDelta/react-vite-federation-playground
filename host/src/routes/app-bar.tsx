@@ -12,7 +12,7 @@ export const AppBar = () => {
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl">
             <PlayCircleIcon className="h-7 w-7" />
-            React Microfrontends Playground
+            React Micro Frontends Playground
           </Link>
         </div>
         <div className="flex-none">
