@@ -5,15 +5,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Host Application",
+      "name": "Edge: Debug Host Application",
       "request": "launch",
       "type": "msedge",
       "url": "http://localhost:5400",
-      "webRoot": "${workspaceFolder:host}",
       "pathMapping": {
-        "localhost:5400": "${workspaceFolder:host}",
-        "localhost:5401": "${workspaceFolder:clients/mfe-one}",
-        "localhost:5402": "${workspaceFolder:clients/mfe-two}",
+        "/": "${workspaceFolder:host}",
+        "/mfe-one": "${workspaceFolder:clients/mfe-one}",
+        "/mfe-two": "${workspaceFolder:clients/mfe-two}",
       }
     }
   ],
