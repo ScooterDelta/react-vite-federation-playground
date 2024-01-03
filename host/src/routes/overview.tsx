@@ -9,9 +9,10 @@ export const Overview = () => {
         visible on the MFE Client Applications unless loaded by the host
       </p>
       <h2>This is what a primary button looks like on Host!</h2>
-      <p>
+      <Button></Button>
+      <h2>
         Playing around with code snippets, for example adding a new Microapp:
-      </p>
+      </h2>
       <div className="mockup-code">
         <pre data-prefix="$">
           <code>
@@ -19,7 +20,6 @@ export const Overview = () => {
           </code>
         </pre>
       </div>
-      <Button></Button>
     </article>
   );
 };
