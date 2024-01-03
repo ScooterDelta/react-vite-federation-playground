@@ -57,6 +57,7 @@ This project is configured as a mono repo, but configuration should be kept spec
     - Currently fixing by providing `placeholder={undefined}` on components requiring it - remove this when possible.
 - Possible issue with overwriting styles with the same name from different applications
   - Possible solutions in blog post [using-tailwindcss-with-module-federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) - likely best option is to set a tailwind css prefix per app
+  - Above blog post used [postcss-prefixer](https://www.npmjs.com/package/postcss-prefixer) as a postprocess step to add prefixes.
 
 #### More Investigation Required
 

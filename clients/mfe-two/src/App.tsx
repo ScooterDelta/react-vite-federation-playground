@@ -1,4 +1,3 @@
-import './App.css';
 import Button from './button/Button';
 
 function App() {
