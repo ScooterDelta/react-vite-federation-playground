@@ -3,9 +3,9 @@ import { Link, Outlet } from 'react-router-dom';
 export const AppBar = () => {
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-300">
         <div className="flex-1">
-          <Link to="/home" className="btn btn-ghost text-xl">
+          <Link to="/" className="btn btn-ghost text-xl">
             React Microfrontends Playground
           </Link>
         </div>
@@ -21,10 +21,8 @@ export const AppBar = () => {
         </div>
       </div>
       <br />
-      <div className="hero">
-        <div className="hero-content text-center">
-          <Outlet />
-        </div>
+      <div className="text-center">
+        <Outlet />
       </div>
     </>
   );

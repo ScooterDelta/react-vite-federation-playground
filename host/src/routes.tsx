@@ -2,7 +2,7 @@ import MfeOneRoutes from 'mfe-one/routes';
 import MfeTwoRoutes from 'mfe-two/routes';
 import { RouteObject } from 'react-router-dom';
 import { AppBar } from './routes/app-bar';
-import { Root } from './routes/root';
+import { Overview } from './routes/overview';
 
 export const routes: RouteObject[] = [
   {
@@ -10,8 +10,8 @@ export const routes: RouteObject[] = [
     element: <AppBar />,
     children: [
       {
-        path: '/home',
-        element: <Root />,
+        path: '/',
+        element: <Overview />,
       },
       ...MfeOneRoutes,
       ...MfeTwoRoutes,

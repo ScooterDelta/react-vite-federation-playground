@@ -1,4 +1,4 @@
-export const Root = () => {
+export const Overview = () => {
   return (
     <div>
       <h2>Host Application Root</h2>
