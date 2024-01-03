@@ -46,6 +46,8 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [Vitedge](https://vitedge.js.org/)
   - A Vite ESR Framework - handles SSR for first load ONLY (might help with router initialization)
   - Alternatively, [Vite SSR](https://github.com/frandiox/vite-ssr) can be used to achieve similar (used by `Vitedge`)
+- [vite-plugin-checker](https://vite-plugin-checker.netlify.app/introduction/getting-started.html) to enable `typescript` checks on build
+  - Additionally add a [VSCode Background Task Problem Matcher](https://code.visualstudio.com/Docs/editor/tasks#_background-watching-tasks), see the template on [vite-plugin-checker/issues/95](https://github.com/fi3ework/vite-plugin-checker/issues/95).
 
 ## Rough Notes
 
