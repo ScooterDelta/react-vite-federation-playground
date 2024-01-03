@@ -22,6 +22,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [ ] Set up SSR or Edge SSR for initial page load and router initialization support
 - [ ] Set up MonoRepo supporting / restrictive tools (e.g. `eslint-plugin-import` and `eslint-plugin-boundaries`)
 - [ ] Set up dynamic routing support - loading Micro Applications from API Endpoint registry.
+  - [ ] Set up [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/) so each application can define its routes with display names for top level nav bar
 
 ### Tools
 
@@ -52,6 +53,8 @@ This project is configured as a mono repo, but configuration should be kept spec
   - Can set up the prettier plugin [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
   - [material-tailwind/issues/528](https://github.com/creativetimofficial/material-tailwind/issues/528) causes `placeholder` to be required on all types, can be fixed by downgrading `@types/react` to `18.2.42`
     - Currently fixing by providing `placeholder={undefined}` on components requiring it - remove this when possible.
+- Possible issue with overwriting styles with the same name from different applications
+  - Possible solutions in blog post [using-tailwindcss-with-module-federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) - likely best option is to set a tailwind css prefix per app
 
 #### More Investigation Required
 
