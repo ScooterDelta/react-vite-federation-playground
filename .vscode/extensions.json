@@ -1,15 +1,15 @@
 {
-    "recommendations": [
-        "bradlc.vscode-tailwindcss",
-        "streetsidesoftware.code-spell-checker",
-        "editorconfig.editorconfig",
-        "dbaeumer.vscode-eslint",
-        "visualstudioexptteam.vscodeintellicode",
-        "eamodio.gitlens",
-        "davidanson.vscode-markdownlint",
-        "christian-kohler.npm-intellisense",
-        "christian-kohler.path-intellisense",
-        "esbenp.prettier-vscode",
-        "stivo.tailwind-fold"
-    ]
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "stivo.tailwind-fold",
+    "streetsidesoftware.code-spell-checker",
+    "visualstudioexptteam.vscodeintellicode"
+  ]
 }
