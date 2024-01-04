@@ -6,21 +6,23 @@ This project is configured as a mono repo, but configuration should be kept spec
 
 ## Goals
 
-- [ ] Set up a micro frontend host supporting React with Vite
-  - [ ] The host should supply a rendered header menu
-  - [ ] The host should provide top level routing
-  - [ ] Set up collapsible sidebar nav for Nested Route Applications (see [drawer.css](https://github.com/saadeghi/daisyui/blob/master/src/components/styled/drawer.css))
+- [x] Set up a micro frontend host supporting React with Vite
+  - [x] The host should supply a rendered header menu
+  - [x] The host should provide top level routing
+  - [x] Set up collapsible sidebar nav for Nested Route Applications (see [drawer.css](https://github.com/saadeghi/daisyui/blob/master/src/components/styled/drawer.css))
+- [ ] Set up deeply nested routes between host and microapps
+- [ ] Configure 
 - [x] Set up two micro frontend clients supporting React with Vite
 - [ ] Set up best practices for general purpose tools
   - [ ] ESLint, Vite, React Router, React Query, Prettier, Editor Config
 - [ ] Set up a Docker Container for the root application than can be easily "run" by the clients for debugging.
   - [ ] Focus on a clean developer experience for independent UI apps outside of the container.
-- [ ] Set up Source Maps for working (and debugging) locally
+- [x] Set up Source Maps for working (and debugging) locally
   - [ ] Disable in higher environments / production builds (opt-in locally).
 - [x] Test CSS / Tailwind CSS conflicting definition between host and MicroApps
   - Enabling different columns causes a styling conflict wtih the different applications
   - See blog post below highlighting the issues
-- [ ] Add demo app that shows conflicting styles
+- [ ] Add demo app that shows conflicting styles - easiest way to do this is rename prefix in `mfe1-` to `host-` and demo
 
 ### Stretch Goals
 
@@ -93,6 +95,16 @@ This project is configured as a mono repo, but configuration should be kept spec
   - Add the new microfrontend to the host `vite.config.ts` and add configuration for environment variable
 - Each app implements its own `<div className="container mx-auto">` in their relative context roots
   - This is to avoid injecting unnecessary padding from the parent application, so if apps want their own sidenav / topnav they can.
+
+### Concerns and Issues
+
+- Router loads all microapps on initial load - this causes concerns around downtime of single apps
+  - Could be mitigated by only loading those nested routes once the app loads, and wrap the entire router in a changeable context.
+  - Async loading of single pages in the router does not work (with initial tests) - mitigated same as above
+- Styles can conflict between hosts and client applications (or between client apps)
+  - This is replicable by taking the styles prefix (current workaround) in MFE One (`mfe1-`) and making it `host-`. This will cause render issues in the host application.
+  - Possible better solution on [using-tailwindcss-with-module-federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/).
+- No interop is provided between host and clients at the moment - this can be changed or made more dynamic.
 
 ### First Time Setup
 

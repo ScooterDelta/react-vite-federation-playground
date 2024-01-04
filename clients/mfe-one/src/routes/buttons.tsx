@@ -2,7 +2,7 @@ import CounterButton from '../components/counter-button';
 
 export const Buttons = () => {
   return (
-    <>
+    <div className="mfe1-prose">
       <h1>MFE One</h1>
       <h2>Some Styled Buttons!</h2>
       <CounterButton
@@ -14,6 +14,6 @@ export const Buttons = () => {
       <CounterButton
         title="Click Me (Ghost)"
         className="mfe1-btn mfe1-btn-ghost"></CounterButton>
-    </>
+    </div>
   );
 };

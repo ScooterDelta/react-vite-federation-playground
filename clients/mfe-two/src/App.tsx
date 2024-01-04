@@ -2,7 +2,7 @@ import CounterButton from './components/counter-button';
 
 function App() {
   return (
-    <div className="mfe2-container mfe2-mx-auto">
+    <div className="mfe2-prose">
       <br />
       <h1>MFE Two</h1>
       <h2>Some Styled Buttons!</h2>
