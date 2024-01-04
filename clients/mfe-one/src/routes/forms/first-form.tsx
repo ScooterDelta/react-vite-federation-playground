@@ -52,7 +52,11 @@ export const FirstForm = () => {
               </label>
             </div>
             <div className="mfe1-form-control mfe1-mt-6">
-              <button className="mfe1-btn mfe1-btn-primary">Login</button>
+              <button
+                className="mfe1-btn mfe1-btn-primary mfe1-btn-outline"
+                type="submit">
+                Login
+              </button>
             </div>
           </form>
         </div>

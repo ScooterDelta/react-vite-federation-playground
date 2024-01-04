@@ -11,40 +11,40 @@ export const Overview = () => {
           visible on the MFE Client Applications unless loaded by the host
         </p>
         <h2>Some Styled Buttons!</h2>
-        <div className="mfe2-px-6">
+        <div className="host-px-6">
           <CounterButton
             title="Click Me (Primary)"
-            className="mfe2-btn mfe2-btn-primary"></CounterButton>
+            className="host-btn host-btn-primary"></CounterButton>
         </div>
-        <div className="mfe2-px-6 mfe2-pt-4">
+        <div className="host-px-6 host-pt-4">
           <CounterButton
             title="Click Me (Secondary)"
-            className="mfe2-btn mfe2-btn-secondary"></CounterButton>
+            className="host-btn host-btn-secondary"></CounterButton>
         </div>
-        <div className="mfe2-px-6 mfe2-pt-4">
+        <div className="host-px-6 host-pt-4">
           <CounterButton
             title="Click Me (Ghost)"
-            className="mfe2-btn mfe2-btn-ghost"></CounterButton>
+            className="host-btn host-btn-ghost"></CounterButton>
         </div>
-        <div className="mfe2-px-6 mfe2-pt-4">
+        <div className="host-px-6 host-pt-4">
           <CounterButton
             title="Click Me (Accent)"
-            className="mfe2-btn mfe2-btn-accent"></CounterButton>
+            className="host-btn host-btn-accent"></CounterButton>
         </div>
-        <div className="mfe2-px-6 mfe2-pt-4">
+        <div className="host-px-6 host-pt-4">
           <CounterButton
             title="Click Me (Info)"
-            className="mfe2-btn mfe2-btn-info"></CounterButton>
+            className="host-btn host-btn-info"></CounterButton>
         </div>
-        <div className="mfe2-px-6 mfe2-pt-4">
+        <div className="host-px-6 host-pt-4">
           <CounterButton
             title="Click Me (Warning)"
-            className="mfe2-btn mfe2-btn-warning"></CounterButton>
+            className="host-btn host-btn-warning"></CounterButton>
         </div>
-        <div className="mfe2-px-6 mfe2-pt-4">
+        <div className="host-px-6 host-pt-4">
           <CounterButton
             title="Click Me (Error)"
-            className="mfe2-btn mfe2-btn-error"></CounterButton>
+            className="host-btn host-btn-error"></CounterButton>
         </div>
         <h2>
           Playing around with code snippets, for example adding a new Microapp:

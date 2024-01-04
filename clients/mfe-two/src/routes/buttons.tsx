@@ -33,11 +33,6 @@ export const Buttons = () => {
       </div>
       <div className="mfe2-px-6 mfe2-pt-4">
         <CounterButton
-          title="Click Me (Ghost)"
-          className="mfe2-btn mfe2-btn-ghost"></CounterButton>
-      </div>
-      <div className="mfe2-px-6 mfe2-pt-4">
-        <CounterButton
           title="Click Me (Accent)"
           className="mfe2-btn mfe2-btn-accent"></CounterButton>
       </div>

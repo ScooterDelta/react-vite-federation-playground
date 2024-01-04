@@ -43,7 +43,10 @@ export const SecondForm = () => {
           />
         </label>
         <div className="mfe1-py-4 mfe1-pl-6">
-          <input type="submit" className="mfe1-btn mfe1-btn-primary" />
+          <input
+            type="submit"
+            className="mfe1-btn mfe1-btn-primary mfe1-btn-outline"
+          />
         </div>
       </form>
     </div>

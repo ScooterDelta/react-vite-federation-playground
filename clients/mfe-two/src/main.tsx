@@ -6,8 +6,8 @@ import { router } from './router.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className="mfe1-h-screen mfe1-flex">
-      <div className="mfe1-flex mfe1-flex-grow mfe1-overflow-auto">
+    <div className="mfe2-h-screen mfe2-flex">
+      <div className="mfe2-flex mfe2-flex-grow mfe2-overflow-auto">
         <RouterProvider router={router} />
       </div>
     </div>
