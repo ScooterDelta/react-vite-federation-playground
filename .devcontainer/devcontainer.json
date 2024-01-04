@@ -31,7 +31,8 @@
         "esbenp.prettier-vscode",
         "stivo.tailwind-fold",
         "streetsidesoftware.code-spell-checker",
-        "visualstudioexptteam.vscodeintellicode"
+        "visualstudioexptteam.vscodeintellicode",
+        "pomdtr.excalidraw-editor"
       ]
     }
   }
