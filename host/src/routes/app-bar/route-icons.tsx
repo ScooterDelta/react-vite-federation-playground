@@ -1,4 +1,8 @@
-import { ServerIcon, ServerStackIcon } from '@heroicons/react/24/outline';
+import {
+  BellAlertIcon,
+  ServerIcon,
+  ServerStackIcon,
+} from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useEventBus } from '../../utilities/use-event-bus';
@@ -24,8 +28,8 @@ export const RouteIcons = () => {
           <div className="host-indicator">
             <ServerStackIcon className="host-h-6 host-w-6 host-text-primary" />
             {notifications > 0 && (
-              <span className="host-badge host-badge-sm host-indicator-item">
-                {notifications}
+              <span className="host-badge host-badge-secondary host-badge-sm host-indicator-item">
+                <BellAlertIcon className="host-h-3 host-w-3" />
               </span>
             )}
             MFE Two
