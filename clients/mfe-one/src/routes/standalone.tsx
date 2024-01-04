@@ -5,7 +5,7 @@ export const Standalone = () => {
     <>
       This is the landing page of the standalone application, the app is
       available on{' '}
-      <Link className="link link-primary" to="/mfe-one">
+      <Link className="mfe1-link mfe1-link-primary" to="/mfe-one">
         /mfe-one
       </Link>
     </>

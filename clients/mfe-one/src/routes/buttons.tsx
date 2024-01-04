@@ -7,13 +7,13 @@ export const Buttons = () => {
       <h2>Some Styled Buttons!</h2>
       <CounterButton
         title="Click Me (Primary)"
-        className="btn btn-primary"></CounterButton>
+        className="mfe1-btn mfe1-btn-primary"></CounterButton>
       <CounterButton
         title="Click Me (Secondary)"
-        className="btn btn-secondary"></CounterButton>
+        className="mfe1-btn mfe1-btn-secondary"></CounterButton>
       <CounterButton
         title="Click Me (Ghost)"
-        className="btn btn-ghost"></CounterButton>
+        className="mfe1-btn mfe1-btn-ghost"></CounterButton>
     </>
   );
 };

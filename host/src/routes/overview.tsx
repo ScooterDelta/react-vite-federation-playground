@@ -2,9 +2,9 @@ import CounterButton from '../components/counter-button';
 
 export const Overview = () => {
   return (
-    <div className="container mx-auto">
+    <div className="host-container host-mx-auto">
       <br />
-      <article className="prose max-w-none">
+      <article className="host-prose host-max-w-none">
         <h1>Host Application Root</h1>
         <p>
           Content on the host is rendered by the host container, and will not be
@@ -13,17 +13,17 @@ export const Overview = () => {
         <h2>Some Styled Buttons!</h2>
         <CounterButton
           title="Click Me (Primary)"
-          className="btn btn-primary"></CounterButton>
+          className="host-btn host-btn-primary"></CounterButton>
         <CounterButton
           title="Click Me (Secondary)"
-          className="btn btn-secondary"></CounterButton>
+          className="host-btn host-btn-secondary"></CounterButton>
         <CounterButton
           title="Click Me (Ghost)"
-          className="btn btn-ghost"></CounterButton>
+          className="host-btn host-btn-ghost"></CounterButton>
         <h2>
           Playing around with code snippets, for example adding a new Microapp:
         </h2>
-        <div className="mockup-code">
+        <div className="host-mockup-code">
           <pre data-prefix="$">
             <code>
               npm create vite@latest @react-playground/app -- --template

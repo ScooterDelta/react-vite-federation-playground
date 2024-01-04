@@ -10,44 +10,46 @@ import { RouteConstants } from './constants/routes';
 
 function App() {
   return (
-    <div className="flex">
-      <div className="flex-none x-auto h-screen bg-base-200">
-        <ul className="menu w-48">
+    <div className="mfe1-flex">
+      <div className="mfe1-flex-none mfe1-x-auto mfe1-h-screen mfe1-bg-base-200">
+        <ul className="mfe1-menu mfe1-w-48">
           <li>
             <Link to={RouteConstants.HOME}>
-              <HomeIcon className="h-5 w-5" /> Home
+              <HomeIcon className="mfe1-h-5 mfe1-w-5" /> Home
             </Link>
           </li>
           <li>
             <Link to={RouteConstants.BUTTONS}>
-              <CursorArrowRaysIcon className="h-5 w-5" /> Buttons
+              <CursorArrowRaysIcon className="mfe1-h-5 mfe1-w-5" /> Buttons
             </Link>
           </li>
           <li>
             <Link to={RouteConstants.CHAT}>
-              <ChatBubbleBottomCenterTextIcon className="h-5 w-5" /> Chat
+              <ChatBubbleBottomCenterTextIcon className="mfe1-h-5 mfe1-w-5" />{' '}
+              Chat
             </Link>
           </li>
           <li>
             <Link to={RouteConstants.FORMS}>
-              <ArchiveBoxArrowDownIcon className="h-5 w5" /> Forms
+              <ArchiveBoxArrowDownIcon className="mfe1-h-5 mfe1-w5" /> Forms
             </Link>
             <ul>
               <li>
                 <Link to={RouteConstants.FORMS_FIRST}>
-                  <DocumentCheckIcon className="h-5 w-5" /> First Form
+                  <DocumentCheckIcon className="mfe1-h-5 mfe1-w-5" /> First Form
                 </Link>
               </li>
               <li>
                 <Link to={RouteConstants.FORMS_SECOND}>
-                  <DocumentCheckIcon className="h-5 w-5" /> Second Form
+                  <DocumentCheckIcon className="mfe1-h-5 mfe1-w-5" /> Second
+                  Form
                 </Link>
               </li>
             </ul>
           </li>
         </ul>
       </div>
-      <div className="flex-auto container mx-auto px-4 pt-4">
+      <div className="mfe1-flex-auto mfe1-container mfe1-mx-auto mfe1-px-4 mfe1-pt-4">
         <Outlet />
       </div>
     </div>

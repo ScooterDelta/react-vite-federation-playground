@@ -8,29 +8,30 @@ import { Link, Outlet } from 'react-router-dom';
 export const AppBar = () => {
   return (
     <>
-      <div className="navbar bg-base-300">
-        <div className="flex-1">
-          <Link to="/" className="btn btn-ghost text-xl">
-            <PlayCircleIcon className="h-7 w-7" />
+      <div className="host-navbar host-bg-base-300">
+        <div className="host-flex-1">
+          <Link to="/" className="host-btn host-btn-ghost host-text-xl">
+            <PlayCircleIcon className="host-h-7 host-w-7" />
             React Micro Frontends Playground
           </Link>
         </div>
-        <div className="flex-none">
-          <ul className="menu menu-md menu-horizontal p-1">
-            <li className="py-1">
+        <div className="host-flex-none">
+          <ul className="host-menu host-menu-md host-menu-horizontal host-p-1">
+            <li className="host-py-1">
               <Link to="/mfe-one">
-                <ServerIcon className="h-6 w-6 text-primary" /> MFE One
+                <ServerIcon className="host-h-6 host-w-6 host-text-primary" />{' '}
+                MFE One
               </Link>
             </li>
-            <li className="py-1">
+            <li className="host-py-1">
               <Link to="/mfe-two">
-                <ServerStackIcon className="h-6 w-6 text-primary" />
+                <ServerStackIcon className="host-h-6 host-w-6 host-text-primary" />
                 MFE Two
               </Link>
             </li>
             <li>
               <select
-                className="select select-md w-full max-w-xs"
+                className="host-select host-select-md host-w-full host-max-w-xs"
                 data-choose-theme>
                 <option value={''} disabled>
                   Select Theme:

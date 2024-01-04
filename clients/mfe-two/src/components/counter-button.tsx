@@ -7,7 +7,7 @@ export type CounterButtonProps = {
 
 export const CounterButton = ({
   title,
-  className = 'btn btn-primary',
+  className = 'mfe2-btn mfe2-btn-primary',
 }: CounterButtonProps) => {
   const [state, setState] = useState(0);
   return (
