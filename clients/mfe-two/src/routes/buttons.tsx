@@ -3,17 +3,59 @@ import CounterButton from '../components/counter-button';
 export const Buttons = () => {
   return (
     <div className="mfe2-prose mfe2-max-w-none">
-      <h1>MFE Two</h1>
+      <h1>MFE Two Buttons</h1>
+      <h2>Some Text</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum.
+      </p>
       <h2>Some Styled Buttons!</h2>
-      <CounterButton
-        title="Click Me (Primary)"
-        className="mfe2-btn mfe2-btn-primary"></CounterButton>
-      <CounterButton
-        title="Click Me (Secondary)"
-        className="mfe2-btn mfe2-btn-secondary"></CounterButton>
-      <CounterButton
-        title="Click Me (Ghost)"
-        className="mfe2-btn mfe2-btn-ghost"></CounterButton>
+      <div className="mfe2-px-6">
+        <CounterButton
+          title="Click Me (Primary)"
+          className="mfe2-btn mfe2-btn-primary"></CounterButton>
+      </div>
+      <div className="mfe2-px-6 mfe2-pt-4">
+        <CounterButton
+          title="Click Me (Secondary)"
+          className="mfe2-btn mfe2-btn-secondary"></CounterButton>
+      </div>
+      <div className="mfe2-px-6 mfe2-pt-4">
+        <CounterButton
+          title="Click Me (Ghost)"
+          className="mfe2-btn mfe2-btn-ghost"></CounterButton>
+      </div>
+      <div className="mfe2-px-6 mfe2-pt-4">
+        <CounterButton
+          title="Click Me (Accent)"
+          className="mfe2-btn mfe2-btn-accent"></CounterButton>
+      </div>
+      <div className="mfe2-px-6 mfe2-pt-4">
+        <CounterButton
+          title="Click Me (Info)"
+          className="mfe2-btn mfe2-btn-info"></CounterButton>
+      </div>
+      <div className="mfe2-px-6 mfe2-pt-4">
+        <CounterButton
+          title="Click Me (Warning)"
+          className="mfe2-btn mfe2-btn-warning"></CounterButton>
+      </div>
+      <div className="mfe2-px-6 mfe2-pt-4">
+        <CounterButton
+          title="Click Me (Error)"
+          className="mfe2-btn mfe2-btn-error"></CounterButton>
+      </div>
     </div>
   );
 };

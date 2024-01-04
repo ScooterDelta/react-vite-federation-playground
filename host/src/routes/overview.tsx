@@ -11,15 +11,41 @@ export const Overview = () => {
           visible on the MFE Client Applications unless loaded by the host
         </p>
         <h2>Some Styled Buttons!</h2>
-        <CounterButton
-          title="Click Me (Primary)"
-          className="host-btn host-btn-primary"></CounterButton>
-        <CounterButton
-          title="Click Me (Secondary)"
-          className="host-btn host-btn-secondary"></CounterButton>
-        <CounterButton
-          title="Click Me (Ghost)"
-          className="host-btn host-btn-ghost"></CounterButton>
+        <div className="mfe2-px-6">
+          <CounterButton
+            title="Click Me (Primary)"
+            className="mfe2-btn mfe2-btn-primary"></CounterButton>
+        </div>
+        <div className="mfe2-px-6 mfe2-pt-4">
+          <CounterButton
+            title="Click Me (Secondary)"
+            className="mfe2-btn mfe2-btn-secondary"></CounterButton>
+        </div>
+        <div className="mfe2-px-6 mfe2-pt-4">
+          <CounterButton
+            title="Click Me (Ghost)"
+            className="mfe2-btn mfe2-btn-ghost"></CounterButton>
+        </div>
+        <div className="mfe2-px-6 mfe2-pt-4">
+          <CounterButton
+            title="Click Me (Accent)"
+            className="mfe2-btn mfe2-btn-accent"></CounterButton>
+        </div>
+        <div className="mfe2-px-6 mfe2-pt-4">
+          <CounterButton
+            title="Click Me (Info)"
+            className="mfe2-btn mfe2-btn-info"></CounterButton>
+        </div>
+        <div className="mfe2-px-6 mfe2-pt-4">
+          <CounterButton
+            title="Click Me (Warning)"
+            className="mfe2-btn mfe2-btn-warning"></CounterButton>
+        </div>
+        <div className="mfe2-px-6 mfe2-pt-4">
+          <CounterButton
+            title="Click Me (Error)"
+            className="mfe2-btn mfe2-btn-error"></CounterButton>
+        </div>
         <h2>
           Playing around with code snippets, for example adding a new Microapp:
         </h2>

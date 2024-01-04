@@ -10,19 +10,18 @@ This project is configured as a mono repo, but configuration should be kept spec
   - [x] The host should supply a rendered header menu
   - [x] The host should provide top level routing
   - [x] Set up collapsible sidebar nav for Nested Route Applications (see [drawer.css](https://github.com/saadeghi/daisyui/blob/master/src/components/styled/drawer.css))
-- [ ] Set up deeply nested routes between host and microapps
-- [ ] Configure 
+- [x] Set up deeply nested routes between host and microapps
 - [x] Set up two micro frontend clients supporting React with Vite
-- [ ] Set up best practices for general purpose tools
-  - [ ] ESLint, Vite, React Router, React Query, Prettier, Editor Config
+- [x] Set up best practices for general purpose tools
+  - [x] ESLint, Vite, React Router, React Query, Prettier, Editor Config
 - [ ] Set up a Docker Container for the root application than can be easily "run" by the clients for debugging.
   - [ ] Focus on a clean developer experience for independent UI apps outside of the container.
 - [x] Set up Source Maps for working (and debugging) locally
-  - [ ] Disable in higher environments / production builds (opt-in locally).
+  - [x] Disable in higher environments / production builds (opt-in locally).
 - [x] Test CSS / Tailwind CSS conflicting definition between host and MicroApps
   - Enabling different columns causes a styling conflict wtih the different applications
   - See blog post below highlighting the issues
-- [ ] Add demo app that shows conflicting styles - easiest way to do this is rename prefix in `mfe1-` to `host-` and demo
+- [x] Add demo app that shows conflicting styles - easiest way to do this is rename prefix in `mfe1-` to `host-` and demo
 
 ### Stretch Goals
 
@@ -30,6 +29,7 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [ ] Set up MonoRepo supporting / restrictive tools (e.g. `eslint-plugin-import` and `eslint-plugin-boundaries`)
 - [ ] Set up dynamic routing support - loading Micro Applications from API Endpoint registry.
   - [ ] Set up [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/) so each application can define its routes with display names for top level nav bar
+- [ ] Tailwind prettier
 
 ### Tools
 
