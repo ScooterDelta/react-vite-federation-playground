@@ -1,20 +1,11 @@
-import CounterButton from './components/counter-button';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <div className="mfe2-prose">
-      <br />
-      <h1>MFE Two</h1>
-      <h2>Some Styled Buttons!</h2>
-      <CounterButton
-        title="Click Me (Primary)"
-        className="mfe2-btn mfe2-btn-primary"></CounterButton>
-      <CounterButton
-        title="Click Me (Secondary)"
-        className="mfe2-btn mfe2-btn-secondary"></CounterButton>
-      <CounterButton
-        title="Click Me (Ghost)"
-        className="mfe2-btn mfe2-btn-ghost"></CounterButton>
+    <div className="mfe2-flex mfe2-w-full">
+      <div className="mfe2-flex-auto mfe2-container mfe2-overflow-auto mfe2-mx-auto mfe2-px-4 mfe2-pt-4">
+        <Outlet />
+      </div>
     </div>
   );
 }
