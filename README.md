@@ -22,6 +22,7 @@ This project is configured as a mono repo, but configuration should be kept spec
   - Enabling different columns causes a styling conflict wtih the different applications
   - See blog post below highlighting the issues
 - [x] Add demo app that shows conflicting styles - easiest way to do this is rename prefix in `mfe1-` to `host-` and demo
+- [ ] Set up a [poor man's event bus](https://stackoverflow.com/a/73309839) using document event listeners.
 
 ### Stretch Goals
 
@@ -56,11 +57,6 @@ This project is configured as a mono repo, but configuration should be kept spec
 - [daisy UI](https://daisyui.com) is a simple Tailwind framework
   - Using instead of material tailwind due to bug [material-tailwind/issues/299](https://github.com/creativetimofficial/material-tailwind/issues/299)
   - Adds [heroicons](https://heroicons.com/) for style points
-- [material-tailwind](https://www.material-tailwind.com) and [github/material-tailwind](https://github.com/creativetimofficial/material-tailwind?ref=material-tailwind)
-  - Using this as an experiment to avoid using Material UI and test out Tailwind.
-  - Can set up the prettier plugin [prettier-plugin-tailwindcss](https://github.com/tailwindlabs/prettier-plugin-tailwindcss)
-  - [material-tailwind/issues/528](https://github.com/creativetimofficial/material-tailwind/issues/528) causes `placeholder` to be required on all types, can be fixed by downgrading `@types/react` to `18.2.42`
-    - Currently fixing by providing `placeholder={undefined}` on components requiring it - remove this when possible.
 - Possible issue with overwriting styles with the same name from different applications
   - Possible solutions in blog post [using-tailwindcss-with-module-federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) - likely best option is to set a tailwind css prefix per app
   - Above blog post used [postcss-prefixer](https://www.npmjs.com/package/postcss-prefixer) as a postprocess step to add prefixes.
