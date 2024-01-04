@@ -17,7 +17,10 @@ This project is configured as a mono repo, but configuration should be kept spec
   - [ ] Focus on a clean developer experience for independent UI apps outside of the container.
 - [ ] Set up Source Maps for working (and debugging) locally
   - [ ] Disable in higher environments / production builds (opt-in locally).
-- [ ] Test CSS / Tailwind CSS conflicting definition between host and MicroApps
+- [x] Test CSS / Tailwind CSS conflicting definition between host and MicroApps
+  - Enabling different columns causes a styling conflict wtih the different applications
+  - See blog post below highlighting the issues
+- [ ] Add demo app that shows conflicting styles
 
 ### Stretch Goals
 
