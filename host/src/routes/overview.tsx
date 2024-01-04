@@ -23,11 +23,6 @@ export const Overview = () => {
         </div>
         <div className="host-px-6 host-pt-4">
           <CounterButton
-            title="Click Me (Ghost)"
-            className="host-btn host-btn-ghost"></CounterButton>
-        </div>
-        <div className="host-px-6 host-pt-4">
-          <CounterButton
             title="Click Me (Accent)"
             className="host-btn host-btn-accent"></CounterButton>
         </div>

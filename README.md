@@ -22,7 +22,7 @@ This project is configured as a mono repo, but configuration should be kept spec
   - Enabling different columns causes a styling conflict wtih the different applications
   - See blog post below highlighting the issues
 - [x] Add demo app that shows conflicting styles - easiest way to do this is rename prefix in `mfe1-` to `host-` and demo
-- [ ] Set up a [poor man's event bus](https://stackoverflow.com/a/73309839) using document event listeners.
+- [x] Set up a [poor man's event bus](https://stackoverflow.com/a/73309839) using document event listeners.
 
 ### Stretch Goals
 
