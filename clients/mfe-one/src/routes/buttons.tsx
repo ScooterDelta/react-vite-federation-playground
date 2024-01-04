@@ -2,7 +2,7 @@ import CounterButton from '../components/counter-button';
 
 export const Buttons = () => {
   return (
-    <div className="mfe1-prose">
+    <div className="mfe1-prose mfe1-max-w-none">
       <h1>MFE One</h1>
       <h2>Some Styled Buttons!</h2>
       <CounterButton

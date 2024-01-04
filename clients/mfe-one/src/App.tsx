@@ -10,7 +10,7 @@ import { RouteConstants } from './constants/routes';
 
 function App() {
   return (
-    <div className="mfe1-flex">
+    <div className="mfe1-flex mfe1-w-full">
       <div className="mfe1-flex-none mfe1-x-auto mfe1-h-full mfe1-bg-base-200">
         <ul className="mfe1-menu mfe1-w-48">
           <li>
