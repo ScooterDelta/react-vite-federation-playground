@@ -1,6 +1,9 @@
 import CounterButton from '../components/counter-button';
+import { useEventBus } from '../utilities/use-event-bus';
 
 export const Buttons = () => {
+  const sendNotification = useEventBus('mfe.two.notification');
+
   return (
     <div className="mfe2-prose mfe2-max-w-none">
       <h1>MFE Two Buttons</h1>
@@ -20,6 +23,19 @@ export const Buttons = () => {
         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
         qui officia deserunt mollit anim id est laborum.
       </p>
+      <h2>Send Notifications Between Apps</h2>
+      <div className="mfe2-join">
+        <button
+          className="mfe2-btn mfe2-btn-primary mfe2-join-item"
+          onClick={() => sendNotification('notification created')}>
+          Send Notification
+        </button>
+        <button
+          className="mfe2-btn mfe2-btn-secondary mfe2-join-item"
+          onClick={() => sendNotification('notification cleared')}>
+          Clear Notifications
+        </button>
+      </div>
       <h2>Some Styled Buttons!</h2>
       <div className="mfe2-px-6">
         <CounterButton

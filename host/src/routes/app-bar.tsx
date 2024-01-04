@@ -1,9 +1,6 @@
-import {
-  PlayCircleIcon,
-  ServerIcon,
-  ServerStackIcon,
-} from '@heroicons/react/24/solid';
+import { PlayCircleIcon } from '@heroicons/react/24/solid';
 import { Link, Outlet } from 'react-router-dom';
+import { RouteIcons } from './app-bar/route-icons';
 
 export const AppBar = () => {
   return (
@@ -16,35 +13,7 @@ export const AppBar = () => {
           </Link>
         </div>
         <div className="host-flex-none">
-          <ul className="host-menu host-menu-md host-menu-horizontal host-p-1">
-            <li className="host-py-1">
-              <Link to="/mfe-one">
-                <ServerIcon className="host-h-6 host-w-6 host-text-primary" />{' '}
-                MFE One
-              </Link>
-            </li>
-            <li className="host-py-1">
-              <Link to="/mfe-two">
-                <ServerStackIcon className="host-h-6 host-w-6 host-text-primary" />
-                MFE Two
-              </Link>
-            </li>
-            <li>
-              <select
-                className="host-select host-select-md host-w-full host-max-w-xs"
-                data-choose-theme>
-                <option value={''} disabled>
-                  Select Theme:
-                </option>
-                <option value={'dark'}>Dark</option>
-                <option value={'light'}>Light</option>
-                <option value={'coffee'}>Coffee</option>
-                <option value={'halloween'}>Halloween</option>
-                <option value={'cyberpunk'}>Cyberpunk</option>
-                <option value={'valentine'}>Valentine</option>
-              </select>
-            </li>
-          </ul>
+          <RouteIcons />
         </div>
       </div>
       <div className="host-flex host-flex-grow host-overflow-auto">
