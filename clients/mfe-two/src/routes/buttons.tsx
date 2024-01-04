@@ -32,7 +32,7 @@ export const Buttons = () => {
         </button>
         <button
           className="mfe2-btn mfe2-btn-secondary mfe2-join-item"
-          onClick={() => sendNotification('notification cleared')}>
+          onClick={() => sendNotification('notifications cleared')}>
           Clear Notifications
         </button>
       </div>

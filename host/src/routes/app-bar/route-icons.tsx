@@ -16,21 +16,20 @@ export const RouteIcons = () => {
     <ul className="host-menu host-menu-md host-menu-horizontal host-p-1">
       <li className="host-py-1">
         <Link to="/mfe-one">
+          <ServerIcon className="host-h-6 host-w-6 host-text-primary" /> MFE One
+        </Link>
+      </li>
+      <li className="host-py-1">
+        <Link to="/mfe-two">
           <div className="host-indicator">
-            <ServerIcon className="host-h-6 host-w-6 host-text-primary" /> MFE
-            One
+            <ServerStackIcon className="host-h-6 host-w-6 host-text-primary" />
             {notifications > 0 && (
               <span className="host-badge host-badge-sm host-indicator-item">
                 {notifications}
               </span>
             )}
+            MFE Two
           </div>
-        </Link>
-      </li>
-      <li className="host-py-1">
-        <Link to="/mfe-two">
-          <ServerStackIcon className="host-h-6 host-w-6 host-text-primary" />
-          MFE Two
         </Link>
       </li>
       <li>
