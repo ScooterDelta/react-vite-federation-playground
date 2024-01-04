@@ -13,6 +13,11 @@
         "/": "${workspaceFolder:host}",
         "/mfe-one": "${workspaceFolder:clients/mfe-one}",
         "/mfe-two": "${workspaceFolder:clients/mfe-two}",
+      },
+      "presentation": {
+        "hidden": false,
+        "group": "Workspace Root",
+        "order": 2
       }
     }
   ],
@@ -24,7 +29,12 @@
         "MFE-One Watch & Preview Application",
         "MFE-Two Watch & Preview Application"
       ],
-      "preLaunchTask": "npm: install (workspace)"
+      "preLaunchTask": "npm: install (workspace)",
+      "presentation": {
+        "hidden": false,
+        "group": "Workspace Root",
+        "order": 1
+      }
     }
   ]
 }

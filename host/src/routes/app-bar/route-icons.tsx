@@ -5,7 +5,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useEventBus } from '../../utilities/use-event-bus';
+import { useEventBus } from '../../hooks/use-event-bus';
 
 export const RouteIcons = () => {
   const [notifications, setNotifications] = useState(0);
