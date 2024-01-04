@@ -6,7 +6,7 @@ import { router } from './router.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div className="mfe1-container mfe1-mx-auto">
+    <div className="mfe1-overflow-auto">
       <RouterProvider router={router} />
     </div>
   </React.StrictMode>

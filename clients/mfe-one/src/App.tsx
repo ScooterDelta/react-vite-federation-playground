@@ -11,7 +11,7 @@ import { RouteConstants } from './constants/routes';
 function App() {
   return (
     <div className="mfe1-flex">
-      <div className="mfe1-flex-none mfe1-x-auto mfe1-h-screen mfe1-bg-base-200">
+      <div className="mfe1-flex-none mfe1-x-auto mfe1-h-full mfe1-bg-base-200">
         <ul className="mfe1-menu mfe1-w-48">
           <li>
             <Link to={RouteConstants.HOME}>
@@ -49,7 +49,7 @@ function App() {
           </li>
         </ul>
       </div>
-      <div className="mfe1-flex-auto mfe1-container mfe1-mx-auto mfe1-px-4 mfe1-pt-4">
+      <div className="mfe1-flex-auto mfe1-container mfe1-overflow-auto mfe1-mx-auto mfe1-px-4 mfe1-pt-4">
         <Outlet />
       </div>
     </div>
