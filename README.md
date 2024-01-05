@@ -19,6 +19,7 @@ This project serves as a bit of a sample application to show a possible configur
 - [Getting Started](#getting-started)
   - [Debugging](#debugging)
   - [Starting Manually](#starting-manually)
+  - [Customizing Ports and URLs](#customizing-ports-and-urls)
 - [Scaffolding Applications](#scaffolding-applications)
   - [Configuring Module Federation](#configuring-module-federation)
   - [Configuring React Router](#configuring-react-router)
@@ -61,6 +62,23 @@ Starting the application manually is as simple as starting each of the component
 - Start MFE Two by running `npm run build:watch` and `npm run preview` in the `clients/mfe-two/` folder.
 
 > **Note**: `npm run build:watch` will start a file watcher and automatically rebuild the application, `npm run preview` will serve the assets. They will need to be run in separate terminals as `npm run build:watch` will continue to watch for changes.
+
+### Customizing Ports and URLs
+
+The default ports for applications for local development are selected to work together, however they can be updated at any time. They are currently driven by the following Environment Variables in each application:
+
+- `SERVER_HOST` - Currently defaulted to `0.0.0.0`.
+- `SERVER_PORT` - Currently defaulted for each application:
+  - `host` -> `5400`
+  - `clients/mfe-one` -> `5401`
+  - `clients/mfe-two` -> `5402`
+
+Additionally, the `host` application must be made aware of the client applications new routes, which can be customized with the following environment variables on the `host` application:
+
+- `MFE_ONE_URL` - Currently defaulted to `http://localhost:5401/assets/remoteEntry.js`
+- `MFE_TWO_URL` - Currently defaulted to `http://localhost:5402/assets/remoteEntry.js`
+
+These can all be customized with the use of a `.env` file in each directory, an `.env.example` file is provided to copy-paste and customize.
 
 ## Scaffolding Applications
 
