@@ -420,7 +420,6 @@ export const RouteIcons = () => {
 };
 ```
 
-
 ### Server-Side Rendering (SSR) and Edge-Side Rendering (ESR)
 
 Server side rendering (SSR) and Edge-side Rendering (ESR) should be possible with the host application in particular, this could help with [SEO](https://moz.com/learn/seo/what-is-seo) and [Largest Contentful Paint (LCP)](https://web.dev/articles/lcp). While it hasn't been tested in this Playground, it should be possible to introduce tools to improve the load experience of the applications through tools like:
