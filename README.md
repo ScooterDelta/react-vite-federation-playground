@@ -284,6 +284,22 @@ It is recommended to start the application with the `Watch All MFE Applications`
 
 ### Server-Side Rendering (SSR) and Edge-Side Rendering (ESR)
 
+### Browser Compatibility
+
+Due to the nature of the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) plugin, it requires the use of [top-level await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await). This can limit browser compatibility, which for this application is currently set to `esnext` (see [host/vite.config.ts](./host/vite.config.ts)).
+
+Some workarounds are available for this if additional compatibility is required, such as setting the build targets to the minimum browsers supporting top level await:
+
+```ts
+ build: {
+    target: ["chrome89", "edge89", "firefox89", "safari15"]
+ }
+```
+
+Alternatively, you can look at bringing in the [vite-plugin-top-level-await](https://github.com/Menci/vite-plugin-top-level-await) to polyfill the required function for larger compatibility.
+
+For more information see the documentation on [vite-plugin-federation / ERROR: Top-level await is not available in the configured target environment](https://github.com/originjs/vite-plugin-federation#error-top-level-await-is-not-available-in-the-configured-target-environment).
+
 ## Tools Overview
 
 ## Roadmap
