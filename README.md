@@ -14,7 +14,9 @@ Currently, the external applications are loaded via their `routes` configuration
 
 ## How to consume this playground?
 
-This project serves as a bit of a sample application to show a possible configuration of Micro Frontend Applications in React using Vite. There are additional example applications available on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#example-projects) docs for reference. If you would just like to run the playground to experiment, feel free to fork this repository and run the [Getting Started](#getting-started) guide.
+This project serves as a bit of a sample application to show a possible configuration of Micro Frontend Applications in React using Vite. There are additional example applications available on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#example-projects) docs for reference. 
+
+If you would just like to run the playground to experiment, feel free to fork this repository and run the [Getting Started](#getting-started) guide. Otherwise a detailed guide is provided on how to [Scaffold Applications](#scaffolding-applications), and another on [Findings and Concerns](#findings-and-concerns). Please see the below contents for more.
 
 - [Getting Started](#getting-started)
   - [Debugging](#debugging)
