@@ -94,7 +94,9 @@ Once the application is added, you can make any initial changes required, but ot
 
 This playground uses the `@originjs/vite-plugin-federation` package to handle module federation, which has an extensive [Usage Guide](https://github.com/originjs/vite-plugin-federation#usage) on their docs. It is recommended to look that over, however a TL;DR of the configuration applied in this project is below - assuming we are adding `mfe-two` to our application.
 
-1. Update the [clients/mfe-two/vite.config.ts](./clients/mfe-two/vite.config.ts) to enable module federation in the application.
+1. Install `@originjs/vite-plugin-federation` with `npm install @originjs/vite-plugin-federation --save-dev`.
+
+2. Update the [clients/mfe-two/vite.config.ts](./clients/mfe-two/vite.config.ts) to enable module federation in the application.
 
 ```diff
 import federation from '@originjs/vite-plugin-federation';
@@ -122,7 +124,7 @@ export default ({ mode }) => {
 
 ```
 
-2. Update the [host/vite.config.ts](./host/vite.config.ts) to make it aware of your new application, for example if we were adding `mfe-two`.
+3. Update the [host/vite.config.ts](./host/vite.config.ts) to make it aware of your new application, for example if we were adding `mfe-two`.
 
 ```diff
   return defineConfig({
@@ -144,7 +146,7 @@ export default ({ mode }) => {
 
 > **Note** The `shared` module list which defines any production dependencies that are shared across all applications at runtime, in our case these are [react](https://react.dev/) and [react-router](https://reactrouter.com/en/main). This can be extended to include other shared dependencies as needed (for example [react-hook-form](https://react-hook-form.com/)).
 
-3. It is now possible to import the application via the route configured in the [host/vite.config.ts](./host/vite.config.ts) above, for example:
+4. It is now possible to import the application via the route configured in the [host/vite.config.ts](./host/vite.config.ts) above, for example:
 
 ```tsx
 import MfeOneRoutes from 'external/mfe-one/routes';
@@ -158,7 +160,9 @@ export const MfeOne = () => (<MfeOneRoutes />)
 
 Once the above is all configured, Module Federation is working! You can now import and utilize components from external applications, the next step is configuring this to integrate with [react-router](https://reactrouter.com/en/main) to handle our navigation on the host module.
 
-1. Export a list of available routes from your new Micro Frontend application, for example in `mfe-two` we have [clients/mfe-two/src/routes.tsx](./clients/mfe-two/src/routes.tsx). These routes currently implement the [Route Object](https://reactrouter.com/en/main/route/route#type-declaration) from react router.
+1. Install `react-router-dom` with `npm install react-router-dom`.
+
+2. Export a list of available routes from your new Micro Frontend application, for example in `mfe-two` we have [clients/mfe-two/src/routes.tsx](./clients/mfe-two/src/routes.tsx). These routes currently implement the [Route Object](https://reactrouter.com/en/main/route/route#type-declaration) from react router.
 
 ```tsx
 // routes.tsx
@@ -178,7 +182,7 @@ export const routes: RouteObject[] = [
 
 > **Note** The top level `path` is currently configured by the microapplications, if this conflicts with an existing route on the host then your module will not load.
 
-2. Add router configuration to the Micro Frontend application so that it will behave in the same fashion in `standalone` mode (hitting its port directly), this is done by adding a [clients/mfe-two/src/router.tsx](./clients/mfe-two/src/router.tsx) and adding it to the [clients/mfe-two/src/main.tsx](./clients/mfe-two/src/main.tsx).
+3. Add router configuration to the Micro Frontend application so that it will behave in the same fashion in `standalone` mode (hitting its port directly), this is done by adding a [clients/mfe-two/src/router.tsx](./clients/mfe-two/src/router.tsx) and adding it to the [clients/mfe-two/src/main.tsx](./clients/mfe-two/src/main.tsx).
 
 ```tsx
 // main.tsx
@@ -205,6 +209,29 @@ export const router = createBrowserRouter([
 ```
 
 ### Configuring Tailwind
+
+Tailwind was selected as the styling engine in order to test how different styles interact across the micro applications. Due to these findings each micro application requires its own `prefix` configured, see the [Findings and Concerns / Styling](#styling) section below for more. Otherwise [Tailwind](https://tailwindcss.com/) and [DaisyUI](https://daisyui.com) are configured by the following.
+
+1. Follow the Getting Started guide on [Tailwind](https://tailwindcss.com/docs/guides/vite) for Vite. This should create a [clients/mfe-two/tailwind.config.js](./clients/mfe-two/tailwind.config.js) and [clients/mfe-two/postcss.config.js](./clients/mfe-two/postcss.config.js).
+
+2. Follow the Installation guide on [DaisyUI](https://daisyui.com/docs/install/) to set up DaisyUI, this allows the use of the DaisyUI CSS Component Library.
+
+3. Configure a prefix to avoid styling conflicts with other applications, how this works is documented on the [tailwind configuration](https://tailwindcss.com/docs/configuration#prefix). Make the following changes to the `tailwind.config.js` file to add `prefix` with an appropriate value for your micro application.
+
+```diff
+export default {
++ prefix: 'mfe2-',
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {},
+  },
+  ...
+};
+```
+
+4. Configure any [DaisyUI Themes](https://daisyui.com/docs/themes/), [Typography Settings](https://tailwindcss.com/docs/typography-plugin) or other that you may need for this application.
+
+> **Note** Adding a prefix to `tailwind` is a workaround currently, and means that all styles applied in the application need to include the prefix. Additional details are provided in the [Findings and Concerns / Styling](#styling) section below.
 
 ## Findings and Concerns
 
