@@ -308,6 +308,14 @@ Luckily the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/ite
 
 This option uses the library [Twin.Macro](https://github.com/ben-rogerson/twin.macro) which provides runtime CSS Processing that generate unique class names at runtime, avoiding the risk of build time class name / function conflicts.
 
+Usage of the library boils down to using the custom `JSX` property of `tw` instead of `className`.
+
+```jsx
+import 'twin.macro'
+
+const Input = () => <input tw="border hover:border-black" />
+```
+
 This solution is straightforward and flexible, providing a strong developer experience however it could introduce a slowdown at runtime as styles are processed for each component. This is likely negligible in most cases, and would probably be the easiest solution to implement.
 
 #### Postcss Build-time Prefixer
