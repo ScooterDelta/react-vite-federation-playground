@@ -30,8 +30,12 @@ If you would just like to run the playground to experiment, feel free to fork th
   - [Typescript and Type Safety](#typescript-and-type-safety)
   - [Dev Mode and Development Experience](#dev-mode-and-development-experience)
   - [Styling](#styling)
+    - [Tailwind Prefix](#tailwind-prefix)
+    - [Twin.Macro](#twinmacro)
+    - [Postcss Build-time Prefixer](#postcss-build-time-prefixer)
   - [Routing and Lazy Evaluation](#routing-and-lazy-evaluation)
   - [Server-Side Rendering (SSR) and Edge-side Rendering (ESR)](#server-side-rendering-ssr-and-edge-side-rendering-esr)
+  - [Browser Compatibility](#browser-compatibility)
 - [Roadmap](#roadmap)
   - [Stretch Goals](#stretch-goals)
 
@@ -284,9 +288,11 @@ One of the larger issues with Module Federation is styling, and what side effect
 
 A nice overview of this behaviour and possible solutions is available on a blog post [Using TailwindCSS with Module Federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) by Malcolm Kee.
 
-Based on this we have boiled down two viable solutions, one "cheap and cheerful" with a negative impact on Developer Experience is to add a [Tailwind Prefix](#tailwind-prefix) to each application. The second is to create a [Postcss Build-time Prefixer](#postcss-build-time-prefixer).
+Based on this we have boiled down two viable solutions, one "cheap and cheerful" with a negative impact on Developer Experience is to add a [Tailwind Prefix](#tailwind-prefix) to each application. Another option is to use a Component Styles / `CSS-in-JS` library such as [Twin.Macro](#twinmacro) and the final is to create a [Postcss Build-time Prefixer](#postcss-build-time-prefixer).
 
 Within this playground application we have opted for the [tailwind prefix](https://tailwindcss.com/docs/configuration#prefix) to keep things simple, however I would recommend a more robust solution with a better developer experience for a full production implementation.
+
+> **Note** These options are non-exhaustive, and these solutions are quite specific to `tailwindcss`, if a different styling system is selected then it is likely that similar CSS Side Effects could be experienced if the same class names are used - additional investigation recommended.
 
 #### Tailwind Prefix
 
@@ -298,7 +304,11 @@ If I wanted to use the [Grid System of Columns](https://tailwindcss.com/docs/gri
 
 Luckily the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension for VSCode is aware of the prefix, and will provide intellisense to validate.
 
-> **Note** These options are non-exhaustive, and these solutions are quite specific to `tailwindcss`, if a different styling system is selected then it is likely that similar CSS Side Effects could be experienced if the same class names are used - additional investigation recommended.
+#### Twin.Macro
+
+This option uses the library [Twin.Macro](https://github.com/ben-rogerson/twin.macro) which provides runtime CSS Processing that generate unique class names at runtime, avoiding the risk of build time class name / function conflicts.
+
+This solution is straightforward and flexible, providing a strong developer experience however it could introduce a slowdown at runtime as styles are processed for each component. This is likely negligible in most cases, and would probably be the easiest solution to implement.
 
 #### Postcss Build-time Prefixer
 
