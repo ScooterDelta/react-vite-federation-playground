@@ -1,5 +1,5 @@
+import { useEventBus } from '@react-playground/federation';
 import CounterButton from '../components/counter-button';
-import { useEventBus } from '../hooks/use-event-bus';
 
 export const Buttons = () => {
   const sendNotification = useEventBus('mfe.two.notification');

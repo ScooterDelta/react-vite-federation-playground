@@ -3,9 +3,9 @@ import {
   ServerIcon,
   ServerStackIcon,
 } from '@heroicons/react/24/outline';
+import { useEventBus } from '@react-playground/federation';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useEventBus } from '../../hooks/use-event-bus';
 
 export const RouteIcons = () => {
   const [notifications, setNotifications] = useState(0);
