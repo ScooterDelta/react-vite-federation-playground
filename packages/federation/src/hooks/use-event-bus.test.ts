@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { useEventBus } from '../../src/hooks/use-event-bus';
+import { useEventBus } from './use-event-bus';
 
 describe('Testing event bus communication', () => {
   test('Should fire event as expected', () => {

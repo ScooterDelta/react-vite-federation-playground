@@ -1,7 +1,14 @@
 {
   "extends": "./tsconfig.json",
+  "buildOptions": {
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom"
+    ],
+  },
   "include": [
-    "src/**/*",
-    "test/**/*"
-  ]
+    "src/**/*"
+  ],
+  "exclude": []
 }

@@ -1,5 +1,6 @@
 {
   "directory": "./src",
   "delete": true,
-  "location": "all"
+  "location": "all",
+  "exclude": [".+test-utils.+", ".+.(test|spec).(ts|tsx)"]
 }
