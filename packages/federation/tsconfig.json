@@ -29,6 +29,7 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/**/*.(test|spec).(ts|tsx)"
+    "src/**/*.(test|spec).(ts|tsx)",
+    "src/test-utils/**/*"
   ]
 }
