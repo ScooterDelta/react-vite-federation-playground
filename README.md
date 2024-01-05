@@ -382,7 +382,7 @@ It is recommended to keep the bridge between Host Application and Client Applica
 
 Avoid bringing in direct talking points between host and client applications as much as possible, and limit ways for applications to communicate directly. A good mechanism to allow for inter-application communication is to use a simple event listener or event bus, for example in this project a simple [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) [Event Listener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget).
 
-An example implementation is available in [host/src/hooks/use-event-bus.ts](./host/src/hooks/use-event-bus.ts), and example usage is provided below:
+An example implementation is available in [packages/federation/src/hooks/use-event-bus.ts](./packages/federation/src/hooks/use-event-bus.ts), and example usage is provided below:
 
 Publishing an event:
 
