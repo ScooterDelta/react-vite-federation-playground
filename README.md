@@ -14,6 +14,23 @@ Currently, the external applications are loaded via their `routes` configuration
 
 ## How to consume this playground?
 
+This project serves as a bit of a sample application to show a possible configuration of Micro Frontend Applications in React using Vite. There are additional example applications available on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#example-projects) docs for reference. If you would just like to run the playground to experiment, feel free to fork this repository and run the [Getting Started](#getting-started) guide.
+
+- [Getting Started](#getting-started)
+  - [Debugging](#debugging)
+  - [Starting Manually](#starting-manually)
+- [Scaffolding Applications](#scaffolding-applications)
+  - [Configuring Module Federation](#configuring-module-federation)
+  - [Configuring React Router](#configuring-react-router)
+  - [Configuring Tailwind](#configuring-tailwind)
+- [Findings and Concerns](#findings-and-concerns)
+  - [Typescript and Type Safety](#typescript-and-type-safety)
+  - [Dev Mode and Development Experience](#dev-mode-and-development-experience)
+  - [Styling](#styling)
+  - [Routing and Lazy Evaluation](#routing-and-lazy-evaluation)
+  - [Server-Side Rendering (SSR) and Edge-side Rendering (ESR)](#server-side-rendering-ssr-and-edge-side-rendering-esr)
+- [Roadmap](#roadmap)
+
 ## Getting Started
 
 1. Install dependencies, by running `npm install` in the root folder.
@@ -44,7 +61,135 @@ Starting the application manually is as simple as starting each of the component
 
 > **Note**: `npm run build:watch` will start a file watcher and automatically rebuild the application, `npm run preview` will serve the assets. They will need to be run in separate terminals as `npm run build:watch` will continue to watch for changes.
 
+## Scaffolding Applications
+
+Creating a new application is as simple as invoking the [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) template method with the `react-ts` template:
+
+```sh
+npm create vite@latest @react-playground/<app> -- --template react-ts
+```
+
+Once the application is added, you can make any initial changes required, but otherwise the application is runnable as a standalone app with `vite dev`. Once the application is scaffolded, you can enable [Module Federation](#configuring-module-federation).
+
+### Configuring Module Federation
+
+This playground uses the `@originjs/vite-plugin-federation` package to handle module federation, which has an extensive [Usage Guide](https://github.com/originjs/vite-plugin-federation#usage) on their docs. It is recommended to look that over, however a TL;DR of the configuration applied in this project is below - assuming we are adding `mfe-two` to our application.
+
+1. Update the [clients/mfe-two/vite.config.ts](./clients/mfe-two/vite.config.ts) to enable module federation in the application.
+
+```diff
+import federation from '@originjs/vite-plugin-federation';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+
+// https://vitejs.dev/config/
+export default ({ mode }) => {
+  return defineConfig({
+    ...,
+    plugins: [
+      react(),
++     federation({
++       name: 'mfe-two',
++       filename: 'remoteEntry.js',
++       exposes: {
++         './routes': './src/routes',
++       },
++       shared: ['react', 'react-dom', 'react-router-dom'],
++     }),
+    ],
+    ...,
+  });
+};
+
+```
+
+2. Update the [host/vite.config.ts](./host/vite.config.ts) to make it aware of your new application, for example if we were adding `mfe-two`.
+
+```diff
+  return defineConfig({
+    ...
+    plugins: [
+      react(),
+      federation({
+        name: 'host-app',
+        remotes: {
+          'external/mfe-one': MFE_ONE_URL,
++         'external/mfe-two': MFE_TWO_URL,
+        },
+        shared: ['react', 'react-dom', 'react-router-dom'],
+      }),
+    ],
+    ...
+  });
+```
+
+> **Note** The `shared` module list which defines any production dependencies that are shared across all applications at runtime, in our case these are [react](https://react.dev/) and [react-router](https://reactrouter.com/en/main). This can be extended to include other shared dependencies as needed (for example [react-hook-form](https://react-hook-form.com/)).
+
+3. It is now possible to import the application via the route configured in the [host/vite.config.ts](./host/vite.config.ts) above, for example:
+
+```tsx
+import MfeOneRoutes from 'external/mfe-one/routes';
+
+export const MfeOne = () => (<MfeOneRoutes />)
+```
+
+> **Note** Without additional configuration, Typescript will complain that no declaration is provided for `external/mfe-one/routes`, see [Findings and Concerns / Typescript and Type Safety](#typescript-and-type-safety) for how we solved this.
+
+### Configuring React Router
+
+Once the above is all configured, Module Federation is working! You can now import and utilize components from external applications, the next step is configuring this to integrate with [react-router](https://reactrouter.com/en/main) to handle our navigation on the host module.
+
+1. Export a list of available routes from your new Micro Frontend application, for example in `mfe-two` we have [clients/mfe-two/src/routes.tsx](./clients/mfe-two/src/routes.tsx). These routes currently implement the [Route Object](https://reactrouter.com/en/main/route/route#type-declaration) from react router.
+
+```tsx
+// routes.tsx
+export const routes: RouteObject[] = [
+  {
+    path: '/mfe-two',
+    element: <App />,
+    children: [
+      {
+        path: '',
+        element: <Buttons />,
+      },
+    ],
+  },
+];
+```
+
+> **Note** The top level `path` is currently configured by the microapplications, if this conflicts with an existing route on the host then your module will not load.
+
+2. Add router configuration to the Micro Frontend application so that it will behave in the same fashion in `standalone` mode (hitting its port directly), this is done by adding a [clients/mfe-two/src/router.tsx](./clients/mfe-two/src/router.tsx) and adding it to the [clients/mfe-two/src/main.tsx](./clients/mfe-two/src/main.tsx).
+
+```tsx
+// main.tsx
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <div className="mfe1-h-screen mfe1-flex">
+      <div className="mfe1-flex mfe1-flex-grow mfe1-overflow-auto">
+        <RouterProvider router={router} />
+      </div>
+    </div>
+  </React.StrictMode>
+);
+```
+
+```tsx
+// router.tsx
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Standalone />,
+  },
+  ...routes,
+]);
+```
+
+### Configuring Tailwind
+
 ## Findings and Concerns
+
+### Typescript and Type Safety
 
 ### Dev Mode and Development Experience
 

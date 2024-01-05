@@ -1,4 +1,6 @@
 {
-    "default": true,
-    "line-length": false
+  "default": true,
+  "line-length": false,
+  // Disabled to allow spacing between ordered list values in ./README.md
+  "ol-prefix": false
 }
