@@ -14,7 +14,7 @@ Currently, the external applications are loaded via their `routes` configuration
 
 ## How to consume this playground?
 
-This project serves as a bit of a sample application to show a possible configuration of Micro Frontend Applications in React using Vite. There are additional example applications available on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#example-projects) docs for reference. 
+This project serves as a bit of a sample application to show a possible configuration of Micro Frontend Applications in React using Vite. There are additional example applications available on the [vite-plugin-federation](https://github.com/originjs/vite-plugin-federation#example-projects) docs for reference.
 
 If you would just like to run the playground to experiment, feel free to fork this repository and run the [Getting Started](#getting-started) guide. Otherwise a detailed guide is provided on how to [Scaffold Applications](#scaffolding-applications), and another on [Findings and Concerns](#findings-and-concerns). Please see the below contents for more.
 
@@ -269,6 +269,14 @@ declare module 'external/*/routes' {
 ```
 
 ### Dev Mode and Development Experience
+
+Due to a limitation in the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) as it relates to running a [Development Server](https://vitejs.dev/guide/cli.html#dev-server) with `vite`. This is documented on the [Module Federation Docs](https://github.com/originjs/vite-plugin-federation#vite-dev-mode), and an open issue is open on [issues/525](https://github.com/originjs/vite-plugin-federation/issues/525) and [issues/281](https://github.com/originjs/vite-plugin-federation/issues/281).
+
+This is worked around in this application as shown in the [Starting Manually](#starting-manually) section above, the `client` applications are build using `vite build --watch`, which creates a file watcher build process to automatically rebuild static assets on change. The assets are then served using `vite preview`.
+
+It is recommended to start the application with the `Watch All MFE Applications` debug configuration in [VSCode](https://code.visualstudio.com/) as it wraps all the complexity up for you, and provides a seamless experience (See [Getting Started](#getting-started) for more).
+
+> **Note** This solution does allow changes to be detected and automatically rebuilt while running as a client application, however [Hot Module Replacement](https://vitejs.dev/guide/features.html#hot-module-replacement) will not work for client apps, meaning a manual refresh is required.
 
 ### Styling
 
