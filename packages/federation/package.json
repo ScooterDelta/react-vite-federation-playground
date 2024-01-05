@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run generate-barrels && tsc",
-    "generate-barrels": "barrelsby --delete -d ./src"
+    "generate-barrels": "barrelsby -c ./barrelsby.json"
   },
   "dependencies": {
     "react": "^18.2.0",
