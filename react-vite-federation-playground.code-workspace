@@ -41,6 +41,12 @@
       "daisyui",
       "Polyrepo",
       "prefixer"
+    ],
+    "jest.disabledWorkspaceFolders": [
+      "react-vite-federation-playground",
+      "clients/mfe-one",
+      "clients/mfe-two",
+      "host"
     ]
   }
 }
