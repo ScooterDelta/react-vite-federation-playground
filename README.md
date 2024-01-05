@@ -280,6 +280,54 @@ It is recommended to start the application with the `Watch All MFE Applications`
 
 ### Styling
 
+One of the larger issues with Module Federation is styling, and what side effects could manifest from loading a micro application with conflicting style sheets to the host or other micro applications. Tailwind is still susceptible to this issue, as the style sheets are generated at build time with no awareness of the other applications. This can cause [Functions and Directives](https://tailwindcss.com/docs/functions-and-directives) to mutate the behaviour of CSS Classes of the same name.
+
+A nice overview of this behaviour and possible solutions is available on a blog post [Using TailwindCSS with Module Federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) by Malcolm Kee.
+
+Based on this we have boiled down two viable solutions, one "cheap and cheerful" with a negative impact on Developer Experience is to add a [Tailwind Prefix](#tailwind-prefix) to each application. The second is to create a [Postcss Build-time Prefixer](#postcss-build-time-prefixer).
+
+Within this playground application we have opted for the [tailwind prefix](https://tailwindcss.com/docs/configuration#prefix) to keep things simple, however I would recommend a more robust solution with a better developer experience for a full production implementation.
+
+#### Tailwind Prefix
+
+This option uses a [tailwind prefix](https://tailwindcss.com/docs/configuration#prefix) that is unique in each application, which enforces that our CSS Class Names are always unique. The implication of this is that the developer must always be aware of the prefix when using tailwind.
+
+For example in the `host` application, the [host/tailwind.config.js](./host/tailwind.config.js) specifies the `prefix` as `host-`. This means I will need to prefix **any** styles with `host-` before they will be picked up and applied.
+
+If I wanted to use the [Grid System of Columns](https://tailwindcss.com/docs/grid-template-columns), in normal tailwind I would just use `className="grid grid-cols-4"` for a grid of 4 columns. However, due to the prefix, this would instead become `className="host-grid host-grid-cols-4"`. This creates a negative development experience as the developer will need to keep this in mind across all applied styles, including for plugins like [daisy UI](https://daisyui.com).
+
+Luckily the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension for VSCode is aware of the prefix, and will provide intellisense to validate.
+
+#### Postcss Build-time Prefixer
+
+Part of the [Using TailwindCSS with Module Federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) blog post, he highlighted [a new solution](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/#a-new-solution) to improve the developer experience around this.
+
+That is using a postcss plugin like [postcss-prefixer](https://www.npmjs.com/package/postcss-prefixer) to inject prefixes to all styles at build time, and equivalently add a wrapper method to your `className` definitions in code to inject the same prefix.
+
+```js
+// tailwind-prefixer.ts
+const prefix = 'mfe1-';
+export const tw = (...classes) =>
+  classes
+    .map((cls) =>
+      cls
+        .split(' ')
+        .map((className) => `${prefix}-${className}`)
+        .join(' ')
+    )
+    .join(' ');
+```
+
+```jsx
+// some-usage.jsx
+import tw from 'tailwind-prefixer.ts'
+const someUsage = () => (
+  <div className={tw('sm:hidden md:block')}>
+    <span></span>
+  </div>
+);
+```
+
 ### Routing and Lazy Evaluation
 
 ### Server-Side Rendering (SSR) and Edge-Side Rendering (ESR)
@@ -322,3 +370,4 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
 - [ ] Create plugin based interface for registering applications ([A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/))
 - [ ] Set up SSR or Edge SSR for initial page load and router initialization support
 - [ ] Add monorepo import restrictions and boundaries ([eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) and [eslint-plugin-boundaries](https://www.npmjs.com/package/eslint-plugin-boundaries))
+- [ ] Enable [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss) and [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss) for stronger CI Validation
