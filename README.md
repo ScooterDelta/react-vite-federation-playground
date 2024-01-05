@@ -350,7 +350,78 @@ const someUsage = () => (
 
 ### Routing and Lazy Evaluation
 
+Currently in this playground, when loading up the host application it will initialize [react-router](https://reactrouter.com/en/main), which will then fetch the `routes` from each of the micro applications. Since none of these routes are chunked, but are rather the entire client module - this means on page initialization we are fetching the `host` application bundles, as well as the bundles for `mfe-one` and `mfe-two`.
+
+This causes concerns when some micro-applications should be loaded "on demand", instead of whenever the host application is loaded. Unfortunately just adding a `React.lazy(() => import('some.module'))` in the Micro Frontend routes does not work - as the chunking is not configured to break up the application on these imports, and the host application will attempt to fetch this chunk from the wrong location (itself).
+
+One possible solution to this issue is to bring in more [Opinionated Initialization](#opinionated-initialization) as documented below.
+
+#### Opinionated Initialization
+
+If we introduced a shared basic type of what we expect the top level routes to look like, where we can simply extend the basic `RouteObject` from react router to also include a key to lazily initialize MFE Modules, e.g: `lazyMfe?: string`.
+
+Along with our new `lazyMfe` key on our route objects, we will need to introduce the following:
+
+- A shared utility function that will make `vite.config.ts` aware of our new top level entrypoints to our application.
+- An initialization wrapper that will load the micro applications `routes` and introduce the `React.lazy(...)` when finding `lazyMfe` keywords.
+- Sharing the initialization wrapper with the independent MFE `main` functions so that they can still run as independent apps for development.
+- A top level unit test that the `string` paths defined in our `lazyMfe` keywords lead to actual modules, and validate that they are loaded correctly.
+
+#### Extended Routing
+
+There is a possible need to extend the routing configured by each micro application to provide additional metadata around what is being loaded, this could be useful for top level navigation bars, side navigation menus or mega menus.
+
+This metadata would be quite easy to introduce by extending the basic `RouteObject` ([Route Object]((https://reactrouter.com/en/main/route/route#type-declaration)) with additional data such as `name`, `description`, etc. A nice overview of a similar pluggable implementation is available on [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/) by Malcolm Kee.
+
+## Host and Client Interop
+
+It is recommended to keep the bridge between Host Application and Client Applications strongly opinionated, but loosely coupled. Currently this playground has a very limited interface on how to register applications, just requiring the routes to be provided for [react-router](https://reactrouter.com/en/main) (and perhaps some metadata and lazy evaluation logic as documented in [Routing and Lazy Evaluation](#routing-and-lazy-evaluation) above).
+
+Avoid bringing in direct talking points between host and client applications as much as possible, and limit ways for applications to communicate directly. A good mechanism to allow for inter-application communication is to use a simple event listener or event bus, for example in this project a simple [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) [Event Listener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget).
+
+```ts
+// hooks/use-event-bus.ts
+import { useEffect } from 'react';
+
+type EventDetails<T = string> = Event & {
+  detail?: T;
+};
+
+export const useEventBus = <T = string>(
+  eventType: string,
+  callback?: (details: T) => void
+) => {
+  useEffect(() => {
+    const eventCallback = (ev: EventDetails<T>) => callback?.(ev.detail!);
+
+    if (callback) {
+      document.addEventListener(eventType, eventCallback);
+    }
+
+    return () => {
+      if (callback) {
+        document.removeEventListener(eventType, eventCallback);
+      }
+    };
+    // Ignoring the Callback function, as we don't want to register new events on re-renders
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [eventType]);
+
+  return (data: T) => {
+    const event = new CustomEvent(eventType, { detail: data });
+    document.dispatchEvent(event);
+  };
+};
+```
+
 ### Server-Side Rendering (SSR) and Edge-Side Rendering (ESR)
+
+Server side rendering (SSR) and Edge-side Rendering (ESR) should be possible with the host application in particular, this could help with [SEO](https://moz.com/learn/seo/what-is-seo) and [Largest Contentful Paint (LCP)](https://web.dev/articles/lcp). While it hasn't been tested in this Playground, it should be possible to introduce tools to improve the load experience of the applications through tools like:
+
+- [Vitedge](https://vitedge.js.org/)
+- [Vite SSR](https://github.com/frandiox/vite-ssr)
+
+Various other `vite` tools and frameworks that could help with this are also documented on [Awesome Vite](https://github.com/vitejs/awesome-vite).
 
 ### Browser Compatibility
 
@@ -414,5 +485,6 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
 - [ ] Enable [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss) and [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss) for stronger CI Validation
 - [ ] Set up dynamic routing support - loading Micro Applications from API Endpoint registry and lazy initialization of micro frontend applications.
 - [ ] Create plugin based interface for registering applications ([A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/))
+- [ ] Introduce more comprehensive [VSCode Background Task Problem Matcher](https://code.visualstudio.com/Docs/editor/tasks#_background-watching-tasks), see example on [vite-plugin-checker/issues/95](https://github.com/fi3ework/vite-plugin-checker/issues/95).
 - [ ] Set up SSR or Edge SSR for initial page load and router initialization support
 - [ ] Add monorepo import restrictions and boundaries ([eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) and [eslint-plugin-boundaries](https://www.npmjs.com/package/eslint-plugin-boundaries))
