@@ -30,6 +30,7 @@ This project serves as a bit of a sample application to show a possible configur
   - [Routing and Lazy Evaluation](#routing-and-lazy-evaluation)
   - [Server-Side Rendering (SSR) and Edge-side Rendering (ESR)](#server-side-rendering-ssr-and-edge-side-rendering-esr)
 - [Roadmap](#roadmap)
+  - [Stretch Goals](#stretch-goals)
 
 ## Getting Started
 
