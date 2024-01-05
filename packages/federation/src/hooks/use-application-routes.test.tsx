@@ -1,23 +1,28 @@
-import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { render, screen, waitFor } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { DummyRoot } from '../test-utils/dummy-root';
 import { useApplicationRoutes } from './use-application-routes';
 
-jest.mock('@remix-run/router', () => ({
-  ...jest.requireActual('@remix-run/router'),
-  createClientSideRequest: jest.fn(),
-}));
-
 describe('use-application-route maps to react router lazy initializers', () => {
-  test.skip('should lazy initialize component', () => {
+  test('should lazy initialize component', async () => {
     const router = createMemoryRouter(
       useApplicationRoutes('../test-utils', [
-        { path: '/', lazyMfe: 'dummy-component' },
+        {
+          path: '/',
+          element: <DummyRoot />,
+          children: [{ path: 'dummy', lazyMfe: 'dummy-component' }],
+        },
       ]),
-      { initialEntries: ['/'] }
+      { initialEntries: ['/dummy'] }
     );
 
-    const tree = render(<RouterProvider router={router} />);
+    render(<RouterProvider router={router} />);
 
-    expect(tree.findAllByDisplayValue('Hello World')).toBeInTheDocument();
+    await waitFor(() =>
+      expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+        'Hello World'
+      )
+    );
   });
 });

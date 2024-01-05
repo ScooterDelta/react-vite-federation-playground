@@ -11,7 +11,11 @@ export const useApplicationRoutes = (
     const { lazyMfe, children, ...oldRouteObject } = applicationRoute;
     const updatedRouteObject: RouteObject = { ...oldRouteObject };
     if (lazyMfe) {
-      const lazy = () => import(`${microApplicationPrefix}/${lazyMfe}`);
+      const lazyImportPath = `${microApplicationPrefix}/${lazyMfe}`;
+      const lazy = async () => {
+        const lazyModule = await import(lazyImportPath);
+        return { Component: lazyModule.default };
+      };
       updatedRouteObject.lazy = lazy;
     }
     updatedRouteObject.children = children?.map(child =>
