@@ -34,6 +34,9 @@ If you would just like to run the playground to experiment, feel free to fork th
     - [Twin.Macro](#twinmacro)
     - [Postcss Build-time Prefixer](#postcss-build-time-prefixer)
   - [Routing and Lazy Evaluation](#routing-and-lazy-evaluation)
+    - [Opinionated Initialization](#opinionated-initialization)
+    - [Extended Routing](#extended-routing)
+  - [Host and Client Interop](#host-and-client-interop)
   - [Server-Side Rendering (SSR) and Edge-side Rendering (ESR)](#server-side-rendering-ssr-and-edge-side-rendering-esr)
   - [Browser Compatibility](#browser-compatibility)
 - [Roadmap](#roadmap)
@@ -379,40 +382,44 @@ It is recommended to keep the bridge between Host Application and Client Applica
 
 Avoid bringing in direct talking points between host and client applications as much as possible, and limit ways for applications to communicate directly. A good mechanism to allow for inter-application communication is to use a simple event listener or event bus, for example in this project a simple [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) [Event Listener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget).
 
-```ts
-// hooks/use-event-bus.ts
-import { useEffect } from 'react';
+An example implementation is available in [host/src/hooks/use-event-bus.ts](./host/src/hooks/use-event-bus.ts), and example usage is provided below:
 
-type EventDetails<T = string> = Event & {
-  detail?: T;
-};
+Publishing an event:
 
-export const useEventBus = <T = string>(
-  eventType: string,
-  callback?: (details: T) => void
-) => {
-  useEffect(() => {
-    const eventCallback = (ev: EventDetails<T>) => callback?.(ev.detail!);
-
-    if (callback) {
-      document.addEventListener(eventType, eventCallback);
-    }
-
-    return () => {
-      if (callback) {
-        document.removeEventListener(eventType, eventCallback);
-      }
-    };
-    // Ignoring the Callback function, as we don't want to register new events on re-renders
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [eventType]);
-
-  return (data: T) => {
-    const event = new CustomEvent(eventType, { detail: data });
-    document.dispatchEvent(event);
-  };
+```tsx
+// clients/mfe-two/src/routes/buttons.tsx
+export const Buttons = () => {
+  const sendNotification = useEventBus('mfe.two.notification');
+  ...;
+  return (
+  <>
+    ...
+    <button
+      onClick={() => sendNotification('notification created')}>
+      Send Notification
+    </button>
+    ...
+  </>);
 };
 ```
+
+Subscribing to an event:
+
+```tsx
+// host/src/routes/app-bar/route-icons.tsx
+export const RouteIcons = () => {
+  const [notifications, setNotifications] = useState(0);
+  void useEventBus('mfe.two.notification', event => {
+    if (event === 'notification created') {
+      setNotifications(notifications + 1);
+    } else if (event === 'notifications cleared') {
+      setNotifications(0);
+    }
+  });
+  return (<>...</>)
+};
+```
+
 
 ### Server-Side Rendering (SSR) and Edge-Side Rendering (ESR)
 
