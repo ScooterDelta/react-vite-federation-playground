@@ -6,7 +6,7 @@ The project is currently configured as a [Monorepo](https://monorepo.tools/) to 
 
 ## How does it Work?
 
-This application uses [originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation), [react](https://react.dev/) and [react-router](https://reactrouter.com/en/main) to provide a cohesive micro frontend playground application. This allows the application harness (or `host`) to pull in other applications via their `remoteEntry.js` entrypoints.
+This application uses [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation), [react](https://react.dev/) and [react-router](https://reactrouter.com/en/main) to provide a cohesive micro frontend playground application. This allows the application harness (or `host`) to pull in other applications via their `remoteEntry.js` entrypoints.
 
 ![Micro Frontend Harness](./assets/microfrontend-harness.png)
 
@@ -229,7 +229,44 @@ export default {
 
 ## Findings and Concerns
 
+This section provides an overview of all the findings, workarounds and concerns discovered through this PoC process. It is recommended to look each section over and decide if they impact you before taking inspiration from this setup.
+
 ### Typescript and Type Safety
+
+Since the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) plugin allows us to use native ES Module Imports (`import mfe from 'external/mfe/app`), we start running into some complaints from Typescript. There is a section on their docs talking about [error TS2307: Cannot find module](https://github.com/originjs/vite-plugin-federation#error-ts2307-cannot-find-module). This was addressed in the solution with two simple steps.
+
+1. Prefixing all external applications with the `external/` keyword
+
+```js
+export default ({ mode }) => {
+  return defineConfig({
+    ...,
+    plugins: [
+      react(),
+      federation({
+        ...,
+        remotes: {
+          'external/mfe-one': MFE_ONE_URL,
+          'external/mfe-two': MFE_TWO_URL,
+        },
+      }),
+    ],
+    ...,
+  });
+```
+
+```tsx
+import MfeOneRoutes from 'external/mfe-one/routes';
+```
+
+2. Adding a type declaration to [host/src/@types/external.d.ts](./host/src/@types/external.d.ts) to tell typescript what the expected structure of these modules is when imported. The wildcard in the module path `external/*/routes`, means this type will apply to any import matching that pattern.
+
+```ts
+declare module 'external/*/routes' {
+  const Routes: import('react-router-dom').RouteObject[];
+  export default Routes;
+}
+```
 
 ### Dev Mode and Development Experience
 
