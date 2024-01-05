@@ -99,12 +99,6 @@ This playground uses the `@originjs/vite-plugin-federation` package to handle mo
 2. Update the [clients/mfe-two/vite.config.ts](./clients/mfe-two/vite.config.ts) to enable module federation in the application.
 
 ```diff
-import federation from '@originjs/vite-plugin-federation';
-import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
-
-// https://vitejs.dev/config/
-export default ({ mode }) => {
   return defineConfig({
     ...,
     plugins: [
@@ -120,8 +114,6 @@ export default ({ mode }) => {
     ],
     ...,
   });
-};
-
 ```
 
 3. Update the [host/vite.config.ts](./host/vite.config.ts) to make it aware of your new application, for example if we were adding `mfe-two`.
