@@ -298,6 +298,8 @@ If I wanted to use the [Grid System of Columns](https://tailwindcss.com/docs/gri
 
 Luckily the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension for VSCode is aware of the prefix, and will provide intellisense to validate.
 
+> **Note** These options are non-exhaustive, and these solutions are quite specific to `tailwindcss`, if a different styling system is selected then it is likely that similar CSS Side Effects could be experienced if the same class names are used - additional investigation recommended.
+
 #### Postcss Build-time Prefixer
 
 Part of the [Using TailwindCSS with Module Federation](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/) blog post, he highlighted [a new solution](https://malcolmkee.com/blog/using-tailwindcss-with-module-federation/#a-new-solution) to improve the developer experience around this.
