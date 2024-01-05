@@ -306,7 +306,7 @@ That is using a postcss plugin like [postcss-prefixer](https://www.npmjs.com/pac
 
 ```js
 // tailwind-prefixer.ts
-const prefix = 'mfe1-';
+const prefix = 'mfe1';
 export const tw = (...classes) =>
   classes
     .map((cls) =>
@@ -320,7 +320,7 @@ export const tw = (...classes) =>
 
 ```jsx
 // some-usage.jsx
-import tw from 'tailwind-prefixer.ts'
+import tw from 'tailwind-prefixer'
 const someUsage = () => (
   <div className={tw('sm:hidden md:block')}>
     <span></span>
