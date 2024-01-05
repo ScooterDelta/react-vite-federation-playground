@@ -352,6 +352,31 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
 
 ## Tools Overview
 
+### UI Dependencies
+
+- [react](https://react.dev/)
+- [react-hook-form](https://www.react-hook-form.com)
+- [react-router-dom](https://reactrouter.com/en/main)
+
+### Build and Process
+
+- [VSCode](https://code.visualstudio.com/)
+- [vite](https://vitejs.dev/guide/)
+  - [originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
+- [Tailwindcss](https://tailwindcss.com/)
+  - [DaisyUI](https://daisyui.com/)
+  - [Hero Icons](https://heroicons.com/)
+- [NPM Workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces)
+
+### Static Code Analysis
+
+- [ESLint](https://eslint.org/):
+  - [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+  - [typescript-eslint](https://typescript-eslint.io/linting/configs/)
+  - [Prettier - Integrating with Linters](https://prettier.io/docs/en/integrating-with-linters.html)
+- [Markdownlint](https://github.com/DavidAnson/markdownlint)
+- [Prettier](https://prettier.io/)
+
 ## Roadmap
 
 - [x] Configure and integrate sample host application and multiple micro-applications.
@@ -368,8 +393,8 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
 
 ### Stretch Goals
 
+- [ ] Enable [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss) and [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss) for stronger CI Validation
 - [ ] Set up dynamic routing support - loading Micro Applications from API Endpoint registry and lazy initialization of micro frontend applications.
 - [ ] Create plugin based interface for registering applications ([A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/))
 - [ ] Set up SSR or Edge SSR for initial page load and router initialization support
 - [ ] Add monorepo import restrictions and boundaries ([eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) and [eslint-plugin-boundaries](https://www.npmjs.com/package/eslint-plugin-boundaries))
-- [ ] Enable [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss) and [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss) for stronger CI Validation
