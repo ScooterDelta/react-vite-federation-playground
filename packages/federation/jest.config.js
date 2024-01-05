@@ -2,5 +2,5 @@
 export default {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  testMatch: ['**/src/**/*.test.(ts|tsx|js)'],
+  testMatch: ['**/test/**/*.test.(ts|tsx|js)'],
 };
