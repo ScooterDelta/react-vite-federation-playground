@@ -13,6 +13,10 @@
     {
       "path": "clients/mfe-two",
       "name": "clients/mfe-two"
+    },
+    {
+      "path": "packages/federation",
+      "name": "packages/federation"
     }
   ],
   "settings": {
