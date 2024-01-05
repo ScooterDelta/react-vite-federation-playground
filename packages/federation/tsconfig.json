@@ -3,7 +3,9 @@
     "target": "ESNext", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "module": "ESNext", /* Specify what module code is generated. */
     "lib": [
-      "ESNext"
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
     ],
     "forceConsistentCasingInFileNames": true, /* Ensure that casing is correct in imports. */
     "strict": true, /* Enable all strict type-checking options. */
