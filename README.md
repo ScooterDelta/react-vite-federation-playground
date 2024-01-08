@@ -366,15 +366,15 @@ If we introduced a shared basic type of what we expect the top level routes to l
 
 A possible implementation of this is shown in the shared module to [build-application-routes](./packages/federation/src/core/build-application-routes.ts) which will build the application routes from a `lazyMfe` initializer, a test of this method being consumed by the `host` and `clients/mfe-*` applications is available on the branch `feature/utilize-application-routes`.
 
-Unfortunately this method fails due to limitations in the [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation) library, specifically discussed in the issue thread: [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401).
-
-Due to these limitations, it may be better to utilize a different library, as documented in [Alternatives - Native Federation](#alternatives---native-federation) below.
+Unfortunately this method fails due to limitations in the [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation) library, specifically discussed in the issue thread: [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401). An ongoing discussion thread is available on [discussions/193 - Dynamic/runtime remotes](https://github.com/originjs/vite-plugin-federation/discussions/193), but all solutions are workarounds at the moment.
 
 #### Extended Routing
 
 There is a possible need to extend the routing configured by each micro application to provide additional metadata around what is being loaded, this could be useful for top level navigation bars, side navigation menus or mega menus.
 
 This metadata would be quite easy to introduce by extending the basic `RouteObject` ([Route Object]((https://reactrouter.com/en/main/route/route#type-declaration)) with additional data such as `name`, `description`, etc. A nice overview of a similar pluggable implementation is available on [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/) by Malcolm Kee.
+
+An example of the type system override and import changes are shown in [packages/federation/src/types/ApplicationRoutes.type.ts](./packages/federation/src/types/ApplicationRoutes.type.ts) and [packages/federation/src/core/build-application-routes.ts](./packages/federation/src/core/build-application-routes.ts).
 
 ### Alternatives - Native Federation
 
