@@ -3,28 +3,22 @@ import { RouteObject } from 'react-router-dom';
 import { AppBar } from './routes/app-bar';
 import { Overview } from './routes/overview';
 
-export const routesSync: RouteObject[] = [
-  {
-    path: '/',
-    element: <AppBar />,
-    children: [
-      {
-        path: '/',
-        element: <Overview />,
-      },
-    ],
-  },
-];
+export const hostRoute: RouteObject = {
+  path: '/',
+  element: <AppBar />,
+  children: [
+    {
+      path: '/',
+      element: <Overview />,
+    },
+  ],
+};
 
 export const routes = async (): Promise<RouteObject[]> => [
   {
-    path: '/',
-    element: <AppBar />,
+    ...hostRoute,
     children: [
-      {
-        path: '/',
-        element: <Overview />,
-      },
+      ...(hostRoute.children ?? []),
       ...(await loadRemoteModule({
         remoteName: 'external/mfe-one',
         exposedModule: './routes',

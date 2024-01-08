@@ -5,10 +5,10 @@ import {
   createBrowserRouter,
 } from 'react-router-dom';
 import { themeChange } from 'theme-change';
-import { routes, routesSync } from './routes';
+import routes, { hostRoute } from './routes';
 
 export const AppWrapper = () => {
-  const [appRoutes, setAppRoutes] = useState<RouteObject[]>(routesSync);
+  const [appRoutes, setAppRoutes] = useState<RouteObject[]>([hostRoute]);
 
   useEffect(() => {
     themeChange(false);
