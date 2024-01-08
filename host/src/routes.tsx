@@ -30,5 +30,3 @@ export const routes = async (): Promise<RouteObject[]> => [
     ],
   },
 ];
-
-export default routes;

@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
 } from 'react-router-dom';
 import { themeChange } from 'theme-change';
-import routes, { hostRoute } from './routes';
+import { hostRoute, routes } from './routes';
 
 export const AppWrapper = () => {
   const [appRoutes, setAppRoutes] = useState<RouteObject[]>([hostRoute]);
