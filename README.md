@@ -385,7 +385,12 @@ This method should address concerns around dynamic loading of modules, as this m
 
 Once federation is initialized, imports can be handled through a utility method [loadRemoteModule](https://www.npmjs.com/package/@softarc/native-federation#initializing-a-remote).
 
-A possible example of this configuration is provided on the branch `feature/native-federation`.
+A possible example of this configuration is provided on the branch `feature/native-federation` - however it runs into some other issues:
+
+- The library itself is not highly utilized or actively contributed.
+- Various issues after the latest release of the underlying [@softarc/native-federation](com/package/@softarc/native-federation) library
+  - [@module-federation/vite/issues/11 - Empty react in production build](https://github.com/module-federation/vite/issues/11)
+  - [@module-federation/vite/issues/16 - The entry point "react" cannot be marked as external](https://github.com/module-federation/vite/issues/16)
 
 ### Host and Client Interop
 
