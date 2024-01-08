@@ -36,6 +36,7 @@ If you would just like to run the playground to experiment, feel free to fork th
   - [Routing and Lazy Evaluation](#routing-and-lazy-evaluation)
     - [Opinionated Initialization](#opinionated-initialization)
     - [Extended Routing](#extended-routing)
+  - [Alternatives - Native Federation](#alternatives---native-federation)
   - [Host and Client Interop](#host-and-client-interop)
   - [Server-Side Rendering (SSR) and Edge-side Rendering (ESR)](#server-side-rendering-ssr-and-edge-side-rendering-esr)
   - [Browser Compatibility](#browser-compatibility)
@@ -367,7 +368,7 @@ A possible implementation of this is shown in the shared module to [build-applic
 
 Unfortunately this method fails due to limitations in the [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation) library, specifically discussed in the issue thread: [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401).
 
-Due to these limitations, it may be better to utilize a different library, as documented in [Native Federation](#native-federation) below.
+Due to these limitations, it may be better to utilize a different library, as documented in [Alternatives - Native Federation](#alternatives---native-federation) below.
 
 #### Extended Routing
 
@@ -375,7 +376,7 @@ There is a possible need to extend the routing configured by each micro applicat
 
 This metadata would be quite easy to introduce by extending the basic `RouteObject` ([Route Object]((https://reactrouter.com/en/main/route/route#type-declaration)) with additional data such as `name`, `description`, etc. A nice overview of a similar pluggable implementation is available on [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/) by Malcolm Kee.
 
-### Native Federation
+### Alternatives - Native Federation
 
 As shown in the [Routing and Lazy Evaluation](#routing-and-lazy-evaluation) section above, there are limitations with the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) library around how modules are dynamically loaded.
 
@@ -501,7 +502,7 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
   - [x] Enable file watching across all Micro Applications for easier development experience.
 - [x] Set up inter-application communication via a simple event bus (using [browser document API](https://developer.mozilla.org/en-US/docs/Web/API/Document) and [event listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)).
 - [ ] Docker Container for micro frontend applications and `docker-compose` configuration to allow easy development of Micro Applications in isolated repositories
-- [ ] Implement alternative module federation library to use [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite) and [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) (see [Native Federation](#native-federation) for more).
+- [ ] Implement alternative module federation library to use [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite) and [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) (see [Alternatives - Native Federation](#alternatives---native-federation) for more).
 
 ### Stretch Goals
 
