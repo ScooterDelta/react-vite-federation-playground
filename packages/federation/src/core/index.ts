@@ -3,3 +3,5 @@
  */
 
 export * from "./build-application-routes";
+export * from "./build-lazy-mfe-bundles";
+export * from "./route-initializers/index";

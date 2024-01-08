@@ -1,9 +1,12 @@
 import { RouteObject } from 'react-router-dom';
 import { ApplicationRoutes } from '..';
+import { RouteInitializer } from '../types/route-initializer.type';
+import { routeInitializerESModule } from './route-initializers/route-initializer-es-module';
 
 export const buildApplicationRoutes = (
-  microApplicationPrefix: string,
-  applicationRoutes: ApplicationRoutes[]
+  applicationRoutes: ApplicationRoutes[],
+  microApplicationPrefix?: string,
+  moduleInitializer: RouteInitializer = routeInitializerESModule
 ): RouteObject[] => {
   const mapToRouteObject = (
     applicationRoute: ApplicationRoutes
@@ -11,15 +14,10 @@ export const buildApplicationRoutes = (
     const { lazyMfe, children, ...oldRouteObject } = applicationRoute;
     const updatedRouteObject: RouteObject = { ...oldRouteObject };
     if (lazyMfe) {
-      const lazyImportPath = `${microApplicationPrefix}/${lazyMfe}`;
-      const lazy = async () => {
-        // WARN - Failing since the import comes from a variable, currently dynamic imports must be coded at compile time
-        // - see issue: https://github.com/originjs/vite-plugin-federation/issues/401
-        // - see discussion: https://github.com/originjs/vite-plugin-federation/discussions/193
-        const lazyModule = await import(lazyImportPath);
-        return { Component: lazyModule.default };
-      };
-      updatedRouteObject.lazy = lazy;
+      updatedRouteObject.lazy = moduleInitializer(
+        lazyMfe,
+        microApplicationPrefix
+      );
     }
     updatedRouteObject.children = children?.map(child =>
       mapToRouteObject(child)
