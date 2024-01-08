@@ -8,6 +8,8 @@ The project is currently configured as a [Monorepo](https://monorepo.tools/) to 
 
 This application uses [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation), [react](https://react.dev/) and [react-router](https://reactrouter.com/en/main) to provide a cohesive micro frontend playground application. This allows the application harness (or `host`) to pull in other applications via their `remoteEntry.js` entrypoints.
 
+> **NOTE** This branch is utilizing [@module-federation/vite](https://github.com/module-federation/vite) and [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) instead of [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) for testing. See [Alternatives - Native Federation](#alternatives---native-federation) for more.
+
 ![Micro Frontend Harness](./assets/microfrontend-harness.png)
 
 Currently, the external applications are loaded via their `routes` configuration, meaning that all applications are retrieved when the router is initialized. See [Roadmap / Stretch Goals](#stretch-goals) for some possible improvements around this.
