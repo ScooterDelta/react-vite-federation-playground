@@ -55,7 +55,7 @@ If you would just like to run the playground to experiment, feel free to fork th
 
 ### Debugging
 
-It is possible to debug the applications while they are running locally since the micro frontend applications are built with `sourcemap` enabled (see [host/vite.config.js](./host/vite.config.ts)). In order to debug just follow the below steps:
+It is possible to debug the applications while they are running locally since the micro frontend applications are built with `sourcemap` enabled (see [host/vite.config.ts](./host/vite.config.ts)). In order to debug just follow the below steps:
 
 1. Ensure the applications are running (see [Getting Started](#getting-started) or [Starting Manually](#starting-manually)).
 1. In [VSCode](https://code.visualstudio.com/) start the `Edge: Debug Host Application` configuration.
@@ -444,7 +444,7 @@ export const routes: ApplicationRoutes[] = [
 
 All modules that we want to lazily initialize **must** be exposed in the `vite.config.ts` of that microapplication, so the bundles are split appropriately for lazy loading:
 
-```ts
+```diff
 // mfe-one - vite.config.ts
 export default ({ mode }) => {
   ...;
