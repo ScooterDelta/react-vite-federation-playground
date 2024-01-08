@@ -52,3 +52,5 @@ export const SecondForm = () => {
     </div>
   );
 };
+
+export default SecondForm;

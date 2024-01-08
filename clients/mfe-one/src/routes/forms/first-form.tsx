@@ -64,3 +64,5 @@ export const FirstForm = () => {
     </div>
   );
 };
+
+export default FirstForm;

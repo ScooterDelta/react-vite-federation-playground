@@ -368,7 +368,12 @@ If we introduced a shared basic type of what we expect the top level routes to l
 
 A possible implementation of this is shown in the shared module to [build-application-routes](./packages/federation/src/core/build-application-routes.ts) which will build the application routes from a `lazyMfe` initializer, a test of this method being consumed by the `host` and `clients/mfe-*` applications is available on the branch `feature/utilize-application-routes`.
 
-Unfortunately this method fails due to limitations in the [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation) library, specifically discussed in the issue thread: [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401). An ongoing discussion thread is available on [discussions/193 - Dynamic/runtime remotes](https://github.com/originjs/vite-plugin-federation/discussions/193), but all solutions are workarounds at the moment.
+This method exposes an underlying issue in the [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation) library, discussed in the following threads:
+
+- [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401)
+- [discussions/193 - Dynamic/runtime remotes](https://github.com/originjs/vite-plugin-federation/discussions/193)
+
+To view the full list of changes to achieve the dynamic module loading, please see the diff between [main and utilize-application-routes](https://github.com/ScooterDelta/react-vite-federation-playground/compare/main...feature/utilize-application-routes).
 
 #### Extended Routing
 
