@@ -357,18 +357,17 @@ Currently in this playground, when loading up the host application it will initi
 
 This causes concerns when some micro-applications should be loaded "on demand", instead of whenever the host application is loaded. Unfortunately just adding a `React.lazy(() => import('some.module'))` in the Micro Frontend routes does not work - as the chunking is not configured to break up the application on these imports, and the host application will attempt to fetch this chunk from the wrong location (itself).
 
-One possible solution to this issue is to bring in more [Opinionated Initialization](#opinionated-initialization) as documented below.
+Some recommendations on how to improve the initialization of lazy routes and dynamic routes is provided below in [Opinionated Initialization](#opinionated-initialization) and [Extended Routing](#extended-routing).
 
 #### Opinionated Initialization
 
 If we introduced a shared basic type of what we expect the top level routes to look like, where we can simply extend the basic `RouteObject` from react router to also include a key to lazily initialize MFE Modules, e.g: `lazyMfe?: string`.
 
-Along with our new `lazyMfe` key on our route objects, we will need to introduce the following:
+A possible implementation of this is shown in the shared module to [build-application-routes](./packages/federation/src/core/build-application-routes.ts) which will build the application routes from a `lazyMfe` initializer, a test of this method being consumed by the `host` and `clients/mfe-*` applications is available on the branch `feature/utilize-application-routes`.
 
-- A shared utility function that will make `vite.config.ts` aware of our new top level entrypoints to our application.
-- An initialization wrapper that will load the micro applications `routes` and introduce the `React.lazy(...)` when finding `lazyMfe` keywords.
-- Sharing the initialization wrapper with the independent MFE `main` functions so that they can still run as independent apps for development.
-- A top level unit test that the `string` paths defined in our `lazyMfe` keywords lead to actual modules, and validate that they are loaded correctly.
+Unfortunately this method fails due to limitations in the [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation) library, specifically discussed in the issue thread: [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401).
+
+Due to these limitations, it may be better to utilize a different library, as documented in [Native Federation](#native-federation) below.
 
 #### Extended Routing
 
@@ -376,7 +375,19 @@ There is a possible need to extend the routing configured by each micro applicat
 
 This metadata would be quite easy to introduce by extending the basic `RouteObject` ([Route Object]((https://reactrouter.com/en/main/route/route#type-declaration)) with additional data such as `name`, `description`, etc. A nice overview of a similar pluggable implementation is available on [A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/) by Malcolm Kee.
 
-## Host and Client Interop
+### Native Federation
+
+As shown in the [Routing and Lazy Evaluation](#routing-and-lazy-evaluation) section above, there are limitations with the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) library around how modules are dynamically loaded. 
+
+An alternative library exists that is much more optimized around dynamic loading of modules with [@module-federation/vite](https://github.com/module-federation/vite) which leverages [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) under the hood to achieve module federation with vite.
+
+This method should address concerns around dynamic loading of modules, as this mechanism is designed to load modules from a manifest file. This method is much more optimized around runtime control of imports, through methods like [initFederation](https://www.npmjs.com/package/@softarc/native-federation#initializing-a-host).
+
+Once federation is initialized, imports can be handled through a utility method [loadRemoteModule](https://www.npmjs.com/package/@softarc/native-federation#initializing-a-remote).
+
+A possible example of this configuration is provided on the branch `feature/native-federation`.
+
+### Host and Client Interop
 
 It is recommended to keep the bridge between Host Application and Client Applications strongly opinionated, but loosely coupled. Currently this playground has a very limited interface on how to register applications, just requiring the routes to be provided for [react-router](https://reactrouter.com/en/main) (and perhaps some metadata and lazy evaluation logic as documented in [Routing and Lazy Evaluation](#routing-and-lazy-evaluation) above).
 
@@ -485,6 +496,7 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
   - [x] Enable file watching across all Micro Applications for easier development experience.
 - [x] Set up inter-application communication via a simple event bus (using [browser document API](https://developer.mozilla.org/en-US/docs/Web/API/Document) and [event listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)).
 - [ ] Docker Container for micro frontend applications and `docker-compose` configuration to allow easy development of Micro Applications in isolated repositories
+- [ ] Implement alternative module federation library to use [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite) and [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) (see [Native Federation](#native-federation) for more).
 
 ### Stretch Goals
 
