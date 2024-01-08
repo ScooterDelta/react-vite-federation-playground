@@ -375,6 +375,144 @@ This method exposes an underlying issue in the [@originjs/vite-plugin-federation
 
 To view the full list of changes to achieve the dynamic module loading, please see the diff between [main and utilize-application-routes](https://github.com/ScooterDelta/react-vite-federation-playground/compare/main...feature/utilize-application-routes).
 
+The core of this change is to remove direct imports from the [clients/mfe-one/src/routes.tsx](./clients/mfe-one/src/routes.tsx), so those routes can be tree shaken out of the application. They are then lazy loaded when the micro frontend application is initialized in the host container, which will fetch the bundles from the remote.
+
+The initialization logic relies on internal runtime methods from the module [@originjs/vite-plugin-federation](https://www.npmjs.com/package/@originjs/vite-plugin-federation), specifically `__federation__.__federation_method_getRemote` and `__federation_method_setRemote`. Since these methods are not available at runtime, we introduce a module declaration for them in the host:
+
+```ts
+// @types/__federation__.d.ts
+declare module '__federation__' {
+  const __federation_method_getRemote: (
+    remoteName: string,
+    componentName: string
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ) => any;
+  const __federation_method_setRemote: (
+    remoteName: string,
+    remoteConfig: {
+      url: string;
+      format: 'esm' | 'systemjs' | 'var';
+      from?: 'vite' | 'webpack';
+    }
+  ) => void;
+}
+```
+
+This will tell TypeScript what these methods are when we try to utilize them in the `route-initializer-module-federation.ts` method, which will provide a lazy load construct for [react-router](https://reactrouter.com/en/main) to consume.
+
+```ts
+// route-initializer-module-federation.ts
+export const routeInitializerModuleFederation =
+  (remoteEntryUrl: string): RouteInitializer =>
+  (importPath, microApplicationPrefix) =>
+  async () => {
+    const federation = await import('__federation__');
+    federation.__federation_method_setRemote(microApplicationPrefix!, {
+      url: remoteEntryUrl,
+      format: 'esm',
+      from: 'vite',
+    });
+    const module = await federation.__federation_method_getRemote(
+      microApplicationPrefix!,
+      `./${importPath}`
+    );
+    return { Component: module.default };
+  };
+```
+
+Once that is complete, we update the routes definition to use our overridden [packages/federation/src/types/application-routes.type.ts]('./packages/federation/src/types/application-routes.type.ts) to provide `lazyMfe` initialization strings:
+
+```ts
+// routes.tsx
+export const routes: ApplicationRoutes[] = [
+  {
+    path: '/mfe-one',
+    element: <App />,
+    children: [
+      ...,
+      {
+        path: 'buttons',
+        lazyMfe: 'routes/buttons',
+      },
+      {
+        path: 'chat',
+        lazyMfe: 'routes/chat',
+      },
+      ...,
+    ],
+  },
+];
+```
+
+All modules that we want to lazily initialize **must** be exposed in the `vite.config.ts` of that microapplication, so the bundles are split appropriately for lazy loading:
+
+```ts
+// mfe-one - vite.config.ts
+export default ({ mode }) => {
+  ...;
+  return defineConfig({
+    ...,
+    plugins: [
+      react(),
+      federation({
+        name: 'mfe-one',
+        filename: 'remoteEntry.js',
+        exposes: {
+          './routes': './src/routes',
++         './routes/buttons': './src/routes/buttons',
++         './routes/chat': './src/routes/chat',
++         './routes/forms': './src/routes/forms',
++         './routes/forms/first-form': './src/routes/forms/first-form',
++         './routes/forms/second-form': './src/routes/forms/second-form',
+        },
+        shared: ['react', 'react-dom', 'react-router-dom'],
+      }),
+    ],
+    ...,
+  });
+};
+```
+
+On the host we update our router to convert these module loader prefixes back into module paths with our wrapper function [packages/federation/src/core/build-application-routes.ts](./packages/federation/src/core/build-application-routes.ts):
+
+```ts
+// host - src/routes.tsx
+export const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <AppBar />,
+    children: [
+      {
+        path: '/',
+        element: <Overview />,
+      },
+      ...buildApplicationRoutes(
+        MfeOneRoutes,
+        'external/mfe-one',
+        routeInitializerModuleFederation(
+          'http://localhost:5401/assets/remoteEntry.js'
+        )
+      ),
+      ...buildApplicationRoutes(
+        MfeTwoRoutes,
+        'external/mfe-two',
+        routeInitializerModuleFederation(
+          'http://localhost:5402/assets/remoteEntry.js'
+        )
+      ),
+    ],
+  },
+];
+```
+
+Once this is all wired up, the application should now load these modules on-demand instead of upfront. Optimizing the bundle loading of the application.
+
+**Issues with this approach**:
+
+- Currently this implementation does not allow "standalone" development of the applications, as there is no current stub for a loader method to load the `lazyMfe` modules outside of the `__federation__` methods. The current [packages/federation/src/core/route-initializers/route-initializer-es-module.ts](./packages/federation/src/core/route-initializers/route-initializer-es-module.ts) does not work without bringing in [import-maps](https://github.com/WICG/import-maps) (similar to how module federation itself works).
+  - A possible *Workaround*  is duplication of the `routes.tsx` object for standalone development, which loads via direct import would allow this to work, but fragments the application initialization even further.
+  - Another possible *workaround* is to introduce a `vite` plugin to map the imports appropriately for the standalone mode, so the module development is more straightforward.
+
 #### Extended Routing
 
 There is a possible need to extend the routing configured by each micro application to provide additional metadata around what is being loaded, this could be useful for top level navigation bars, side navigation menus or mega menus.
