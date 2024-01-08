@@ -11,3 +11,5 @@ export const Standalone = () => {
     </>
   );
 };
+
+export default Standalone;

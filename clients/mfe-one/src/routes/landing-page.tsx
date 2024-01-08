@@ -229,3 +229,5 @@ export const LandingPage = () => {
     </article>
   );
 };
+
+export default LandingPage;
