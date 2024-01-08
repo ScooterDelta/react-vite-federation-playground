@@ -1,9 +1,11 @@
-import federation from '@originjs/vite-plugin-federation';
+import { federation } from '@module-federation/vite';
+import { createEsBuildAdapter } from '@softarc/native-federation-esbuild';
+import { reactReplacements } from '@softarc/native-federation-esbuild/src/lib/react-replacements';
 import react from '@vitejs/plugin-react';
 import { defineConfig, loadEnv } from 'vite';
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
+export default ({ mode, command }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd(), '') };
 
   const SERVER_HOST = process.env.SERVER_HOST ?? '0.0.0.0';
@@ -11,10 +13,6 @@ export default ({ mode }) => {
     process.env.SERVER_PORT != undefined
       ? parseInt(process.env.SERVER_PORT)
       : 5400;
-  const MFE_ONE_URL =
-    process.env.MFE_ONE_URL ?? 'http://localhost:5401/assets/remoteEntry.js';
-  const MFE_TWO_URL =
-    process.env.MFE_TWO_URL ?? 'http://localhost:5402/assets/remoteEntry.js';
 
   return defineConfig({
     server: {
@@ -28,12 +26,18 @@ export default ({ mode }) => {
     plugins: [
       react(),
       federation({
-        name: 'host-app',
-        remotes: {
-          'external/mfe-one': MFE_ONE_URL,
-          'external/mfe-two': MFE_TWO_URL,
+        options: {
+          workspaceRoot: __dirname,
+          outputPath: 'dist',
+          tsConfig: 'tsconfig.json',
+          federationConfig: `module-federation/federation.config.cjs`,
+          verbose: false,
+          dev: command === 'serve',
         },
-        shared: ['react', 'react-dom', 'react-router-dom'],
+        adapter: createEsBuildAdapter({
+          plugins: [],
+          fileReplacements: reactReplacements.dev,
+        }),
       }),
     ],
     build: {

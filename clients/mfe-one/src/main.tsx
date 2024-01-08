@@ -1,15 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
-import './index.css';
-import { router } from './router.tsx';
+import { initFederation } from '@softarc/native-federation';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <div className="mfe1-h-screen mfe1-flex">
-      <div className="mfe1-flex mfe1-flex-grow mfe1-overflow-auto">
-        <RouterProvider router={router} />
-      </div>
-    </div>
-  </React.StrictMode>
-);
+(async () => {
+  await initFederation({
+    'external/mfe-one': 'http://localhost:5401/remoteEntry.json',
+    'external/mfe-two': 'http://localhost:5402/remoteEntry.json',
+  });
+
+  await import('./bootstrap');
+})();

@@ -1,10 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { AppWrapper } from './app-wrapper.tsx';
-import './index.css';
+import { initFederation } from '@softarc/native-federation';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <AppWrapper />
-  </React.StrictMode>
-);
+(async () => {
+  await initFederation();
+
+  await import('./bootstrap');
+})();

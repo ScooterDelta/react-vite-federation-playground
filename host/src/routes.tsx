@@ -1,10 +1,9 @@
-import MfeOneRoutes from 'external/mfe-one/routes';
-import MfeTwoRoutes from 'external/mfe-two/routes';
+import { loadRemoteModule } from '@softarc/native-federation';
 import { RouteObject } from 'react-router-dom';
 import { AppBar } from './routes/app-bar';
 import { Overview } from './routes/overview';
 
-export const routes: RouteObject[] = [
+export const routesSync: RouteObject[] = [
   {
     path: '/',
     element: <AppBar />,
@@ -13,8 +12,27 @@ export const routes: RouteObject[] = [
         path: '/',
         element: <Overview />,
       },
-      ...MfeOneRoutes,
-      ...MfeTwoRoutes,
+    ],
+  },
+];
+
+export const routes = async (): Promise<RouteObject[]> => [
+  {
+    path: '/',
+    element: <AppBar />,
+    children: [
+      {
+        path: '/',
+        element: <Overview />,
+      },
+      ...(await loadRemoteModule({
+        remoteName: 'external/mfe-one',
+        exposedModule: './routes',
+      })),
+      ...(await loadRemoteModule({
+        remoteName: 'external/mfe-two',
+        exposedModule: './routes',
+      })),
     ],
   },
 ];
