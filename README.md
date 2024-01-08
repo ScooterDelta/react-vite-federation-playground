@@ -371,6 +371,8 @@ This method exposes an underlying issue in the [@originjs/vite-plugin-federation
 - [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401)
 - [discussions/193 - Dynamic/runtime remotes](https://github.com/originjs/vite-plugin-federation/discussions/193)
 
+To view the full list of changes to achieve the dynamic module loading, please see the diff between [main and utilize-application-routes](https://github.com/ScooterDelta/react-vite-federation-playground/compare/main...feature/utilize-application-routes).
+
 #### Extended Routing
 
 There is a possible need to extend the routing configured by each micro application to provide additional metadata around what is being loaded, this could be useful for top level navigation bars, side navigation menus or mega menus.
