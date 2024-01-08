@@ -377,7 +377,7 @@ This metadata would be quite easy to introduce by extending the basic `RouteObje
 
 ### Native Federation
 
-As shown in the [Routing and Lazy Evaluation](#routing-and-lazy-evaluation) section above, there are limitations with the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) library around how modules are dynamically loaded. 
+As shown in the [Routing and Lazy Evaluation](#routing-and-lazy-evaluation) section above, there are limitations with the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) library around how modules are dynamically loaded.
 
 An alternative library exists that is much more optimized around dynamic loading of modules with [@module-federation/vite](https://github.com/module-federation/vite) which leverages [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) under the hood to achieve module federation with vite.
 
