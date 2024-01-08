@@ -25,7 +25,7 @@
     {
       "name": "Watch All MFE Applications",
       "configurations": [
-        "Host Dev Application",
+        "Host Watch & Preview Application",
         "MFE-One Watch & Preview Application",
         "MFE-Two Watch & Preview Application"
       ],
