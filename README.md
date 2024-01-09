@@ -666,14 +666,14 @@ For more information see the documentation on [vite-plugin-federation / ERROR: T
   - [x] Enable source maps while working locally to enable client side debugging across all apps.
   - [x] Enable file watching across all Micro Applications for easier development experience.
 - [x] Set up inter-application communication via a simple event bus (using [browser document API](https://developer.mozilla.org/en-US/docs/Web/API/Document) and [event listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)).
-- [ ] Docker Container for micro frontend applications and `docker-compose` configuration to allow easy development of Micro Applications in isolated repositories
-- [ ] Implement alternative module federation library to use [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite) and [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) (see [Alternatives - Native Federation](#alternatives---native-federation) for more).
+- [x] Implement alternative module federation library to use [@module-federation/vite](https://www.npmjs.com/package/@module-federation/vite) and [@softarc/native-federation](https://www.npmjs.com/package/@softarc/native-federation) (see [Alternatives - Native Federation](#alternatives---native-federation) for more).
+- [x] Set up dynamic routing support - loading Micro Applications from API Endpoint registry and lazy initialization of micro frontend applications.
+- [x] Create plugin based interface for registering applications ([A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/))
 
 ### Stretch Goals
 
+- [ ] Docker Container for micro frontend applications and `docker-compose` configuration to allow easy development of Micro Applications in isolated repositories
 - [ ] Enable [eslint-plugin-tailwindcss](https://www.npmjs.com/package/eslint-plugin-tailwindcss) and [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss) for stronger CI Validation
-- [ ] Set up dynamic routing support - loading Micro Applications from API Endpoint registry and lazy initialization of micro frontend applications.
-- [ ] Create plugin based interface for registering applications ([A Plugin-Based Frontend using Module Federation](https://malcolmkee.com/blog/a-plugin-based-frontend-with-module-federation/))
 - [ ] Introduce more comprehensive [VSCode Background Task Problem Matcher](https://code.visualstudio.com/Docs/editor/tasks#_background-watching-tasks), see example on [vite-plugin-checker/issues/95](https://github.com/fi3ework/vite-plugin-checker/issues/95).
 - [ ] Set up SSR or Edge SSR for initial page load and router initialization support
 - [ ] Add monorepo import restrictions and boundaries ([eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import) and [eslint-plugin-boundaries](https://www.npmjs.com/package/eslint-plugin-boundaries))
