@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# Micro Frontend One - Dynamic (MFE One Dyn)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

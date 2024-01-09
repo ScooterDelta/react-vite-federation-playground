@@ -87,8 +87,31 @@ Additionally, the `host` application must be made aware of the client applicatio
 
 - `MFE_ONE_URL` - Currently defaulted to `http://localhost:5401/assets/remoteEntry.js`
 - `MFE_TWO_URL` - Currently defaulted to `http://localhost:5402/assets/remoteEntry.js`
+- `MFE_ONE_DYN_URL` - Currently defaulted to `http://localhost:5403/assets/remoteEntry.js`
 
 These can all be customized with the use of a `.env` file in each directory, an `.env.example` file is provided to copy-paste and customize.
+
+### Project Layout
+
+The application is currently split between the purposes of the applications, which ends with the following:
+
+- [host](./host/README.md)
+- `clients/`
+  - [mfe-one](./clients/mfe-one/README.md)
+  - [mfe-two](./clients/mfe-two/README.md)
+  - [mfe-one-dyn](./clients/mfe-one-dyn/README.md)
+- `packages/`
+  - [federation](./packages/federation/README.md)
+
+The `host` application contains the logic to initialize and call out to the micro frontend applications defined in the `clients/*` folder. Each of these forms a specific purpose:
+
+- `clients/mfe-one` - This application provides a view of how nested routing would work in a simple application.
+- `clients/mfe-one-dyn` - This is a duplicate of `mfe-one`, except that the initial loading is chunked between the top level routes, allowing for dynamic / lazy loading of application modules (see [Opinionated Initialization](#opinionated-initialization) for more).
+- `clients/mfe-two` - This provides a very simple Micro Frontend application, which shows how inter-module communication can work (see [Host and Client Interop](#host-and-client-interop) for more)
+
+The `packages/*` folder currently only contains one package:
+
+- `packages/federation` provides a basic set of tools and utility methods for the applications to consume for module federation.
 
 ## Scaffolding Applications
 
@@ -362,16 +385,14 @@ Some recommendations on how to improve the initialization of lazy routes and dyn
 
 #### Opinionated Initialization
 
-If we introduced a shared basic type of what we expect the top level routes to look like, where we can simply extend the basic `RouteObject` from react router to also include a key to lazily initialize MFE Modules, e.g: `lazyMfe?: string`.
+If we introduced a shared basic type of what we expect the top level routes to look like, where we can simply extend the basic `RouteObject` from react router to also include a key to lazily initialize MFE Modules, e.g: `lazyMfe?: string`. This is implemented in the [packages/federation/src/types/application-routes.type.ts](./packages/federation/src/types/application-routes.type.ts) to show how it may look.
 
-A possible implementation of this is shown in the shared module to [build-application-routes](./packages/federation/src/core/build-application-routes.ts) which will build the application routes from a `lazyMfe` initializer, a test of this method being consumed by the `host` and `clients/mfe-*` applications is available on the branch `feature/utilize-application-routes`.
+These application routes can be converted back to standard `RouteObject` with the [build-application-routes](./packages/federation/src/core/build-application-routes.ts) method, which will build the application routes from a `lazyMfe` initializer. One of the Micro Frontend Applications take advantage of this: `clients/mfe-one-dyn`.
 
 This method exposes an underlying issue in the [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation) library, discussed in the following threads:
 
 - [issues/401 - Importing federated module name via variable](https://github.com/originjs/vite-plugin-federation/issues/401)
 - [discussions/193 - Dynamic/runtime remotes](https://github.com/originjs/vite-plugin-federation/discussions/193)
-
-To view the full list of changes to achieve the dynamic module loading, please see the diff between [main and utilize-application-routes](https://github.com/ScooterDelta/react-vite-federation-playground/compare/main...feature/utilize-application-routes).
 
 The core of this change is to remove direct imports from the [clients/mfe-one/src/routes.tsx](./clients/mfe-one/src/routes.tsx), so those routes can be tree shaken out of the application. They are then lazy loaded when the micro frontend application is initialized in the host container, which will fetch the bundles from the remote.
 
