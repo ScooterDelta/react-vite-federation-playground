@@ -396,7 +396,7 @@ This method exposes an underlying issue in the [@originjs/vite-plugin-federation
 
 The core of this change is to remove direct imports from the [clients/mfe-one/src/routes.tsx](./clients/mfe-one/src/routes.tsx), so those routes can be tree shaken out of the application. They are then lazy loaded when the micro frontend application is initialized in the host container, which will fetch the bundles from the remote.
 
-The initialization logic relies on internal runtime methods from the module [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation), specifically `__federation__.__federation_method_getRemote` and `__federation__.__federation_method_setRemote`. Since these methods are not available at runtime, we introduce a module declaration for them in the host:
+The initialization logic relies on internal runtime methods from the module [@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation), specifically `__federation__.__federation_method_getRemote` and `__federation__.__federation_method_setRemote`. Since these methods are not available at runtime, we introduce a module declaration for them in the host (see [host/src/@types/\_\_federation\_\_.d.ts](./host/src/@types/__federation__.d.ts)):
 
 ```ts
 // @types/__federation__.d.ts
@@ -417,7 +417,7 @@ declare module '__federation__' {
 }
 ```
 
-This will tell TypeScript what these methods are when we try to utilize them in the `route-initializer-module-federation.ts` method, which will provide a lazy load construct for [react-router](https://reactrouter.com/en/main) to consume.
+This will tell TypeScript what these methods are when we try to utilize them in the `route-initializer-module-federation.ts` method, which will provide a lazy load construct for [react-router](https://reactrouter.com/en/main) to consume (see [host/src/federation-helpers/route-initializer-module-federation.ts](./host/src/federation-helpers/route-initializer-module-federation.ts)).
 
 ```ts
 // route-initializer-module-federation.ts
@@ -439,7 +439,7 @@ export const routeInitializerModuleFederation =
   };
 ```
 
-Once that is complete, we update the routes definition to use our overridden [packages/federation/src/types/application-routes.type.ts]('./packages/federation/src/types/application-routes.type.ts) to provide `lazyMfe` initialization strings:
+Once that is complete, we update the routes definition to use our overridden [packages/federation/src/types/application-routes.type.ts]('./packages/federation/src/types/application-routes.type.ts) to provide `lazyMfe` initialization strings (see [clients/mfe-one-dyn/src/routes.tsx](./clients/mfe-one-dyn/src/routes.tsx)):
 
 ```ts
 // routes.tsx
@@ -463,7 +463,7 @@ export const routes: ApplicationRoutes[] = [
 ];
 ```
 
-All modules that we want to lazily initialize **must** be exposed in the `vite.config.ts` of that microapplication, so the bundles are split appropriately for lazy loading:
+All modules that we want to lazily initialize **must** be exposed in the `vite.config.ts` of that micro-application, so the bundles are split appropriately for lazy loading (see [clients/mfe-one-dyn/vite.config.ts](./clients/mfe-one-dyn/vite.config.ts)):
 
 ```diff
 // mfe-one - vite.config.ts
@@ -492,7 +492,7 @@ export default ({ mode }) => {
 };
 ```
 
-On the host we update our router to convert these module loader prefixes back into module paths with our wrapper function [packages/federation/src/core/build-application-routes.ts](./packages/federation/src/core/build-application-routes.ts):
+On the host we update our router to convert these module loader prefixes back into module paths with our wrapper function [packages/federation/src/core/build-application-routes.ts](./packages/federation/src/core/build-application-routes.ts) (see [host/src/routes.tsx](./host/src/routes.tsx)):
 
 ```ts
 // host - src/routes.tsx
