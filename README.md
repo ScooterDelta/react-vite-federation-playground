@@ -22,6 +22,7 @@ If you would just like to run the playground to experiment, feel free to fork th
   - [Debugging](#debugging)
   - [Starting Manually](#starting-manually)
   - [Customizing Ports and URLs](#customizing-ports-and-urls)
+  - [Project Layout](#project-layout)
 - [Scaffolding Applications](#scaffolding-applications)
   - [Configuring Module Federation](#configuring-module-federation)
   - [Configuring React Router](#configuring-react-router)
