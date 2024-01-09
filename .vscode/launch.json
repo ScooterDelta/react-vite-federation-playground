@@ -12,6 +12,7 @@
       "pathMapping": {
         "/": "${workspaceFolder:host}",
         "/mfe-one": "${workspaceFolder:clients/mfe-one}",
+        "/mfe-one-dyn": "${workspaceFolder:clients/mfe-one-dyn}",
         "/mfe-two": "${workspaceFolder:clients/mfe-two}",
       },
       "presentation": {
