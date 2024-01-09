@@ -24,6 +24,12 @@ export const RouteIcons = () => {
         </Link>
       </li>
       <li className="host-py-1">
+        <Link to="/mfe-one-dyn">
+          <ServerIcon className="host-h-6 host-w-6 host-text-primary" />
+          MFE One (Dynamic)
+        </Link>
+      </li>
+      <li className="host-py-1">
         <Link to="/mfe-two">
           <div className="host-indicator">
             <ServerStackIcon className="host-h-6 host-w-6 host-text-primary" />

@@ -1,4 +1,4 @@
-import { RouteObject } from 'react-router-dom';
+import { ApplicationRoutes } from '@react-playground/federation';
 import App from './App';
 import { Buttons } from './routes/buttons';
 import { Chat } from './routes/chat';
@@ -7,7 +7,7 @@ import { FirstForm } from './routes/forms/first-form';
 import { SecondForm } from './routes/forms/second-form';
 import { LandingPage } from './routes/landing-page';
 
-export const routes: RouteObject[] = [
+export const routes: ApplicationRoutes[] = [
   {
     path: '/mfe-one',
     element: <App />,

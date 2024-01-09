@@ -24,7 +24,7 @@ export default ({ mode }) => {
     plugins: [
       react(),
       federation({
-        name: 'mfe-one',
+        name: 'mfe-one-dyn',
         filename: 'remoteEntry.js',
         exposes: {
           './routes': './src/routes',

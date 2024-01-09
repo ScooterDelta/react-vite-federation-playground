@@ -11,6 +11,10 @@
       "name": "clients/mfe-one"
     },
     {
+      "path": "clients/mfe-one-dyn",
+      "name": "clients/mfe-one-dyn"
+    },
+    {
       "path": "clients/mfe-two",
       "name": "clients/mfe-two"
     },
@@ -45,6 +49,7 @@
     "jest.disabledWorkspaceFolders": [
       "react-vite-federation-playground",
       "clients/mfe-one",
+      "clients/mfe-one-dyn",
       "clients/mfe-two",
       "host"
     ]

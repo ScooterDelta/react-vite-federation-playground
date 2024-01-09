@@ -15,6 +15,9 @@ export default ({ mode }) => {
     process.env.MFE_ONE_URL ?? 'http://localhost:5401/assets/remoteEntry.js';
   const MFE_TWO_URL =
     process.env.MFE_TWO_URL ?? 'http://localhost:5402/assets/remoteEntry.js';
+  const MFE_ONE_DYN_URL =
+    process.env.MFE_ONE_DYN_URL ??
+    'http://localhost:5403/assets/remoteEntry.js';
 
   return defineConfig({
     server: {
@@ -32,6 +35,7 @@ export default ({ mode }) => {
         remotes: {
           'external/mfe-one': MFE_ONE_URL,
           'external/mfe-two': MFE_TWO_URL,
+          'external/mfe-one-dyn': MFE_ONE_DYN_URL,
         },
         shared: ['react', 'react-dom', 'react-router-dom'],
       }),
