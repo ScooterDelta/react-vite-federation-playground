@@ -52,6 +52,7 @@
       "clients/mfe-one-dyn",
       "clients/mfe-two",
       "host"
-    ]
+    ],
+    "npm.packageManager": "npm"
   }
 }
